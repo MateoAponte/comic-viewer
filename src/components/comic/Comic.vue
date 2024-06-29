@@ -1,14 +1,19 @@
 <template>
-  <div> A comic here {{ name }} </div>
-  <button @click="changeName()"> Click meee </button>
+  <div> Helloo, let's go to review comics </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
+import { useComicStore } from '../../store';
+import { storeToRefs } from 'pinia';
 
-const name = ref('');
-
-const changeName = () => {
-  name.value = 'New name';
+const comicStore = useComicStore();
+const getComic = () => {
+  comicStore.updateComicNumber();
+  comicStore.fetchComic();
 };
+
+onMounted(() => {
+  getComic();
+});
 </script>
