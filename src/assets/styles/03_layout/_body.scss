@@ -1,0 +1,6 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  background-color: map-get($font-colors, $color-background);
+  font-family: map-get($font-family, $font-family-primary);
+}

@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Saira:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+
+$font-family-primary: 'Saira';
+$font-family-primary-content: 'Saira', system-ui;
+$font-family-title: 'Bangers';
+$font-family-title-content: 'Bangers', system-ui;
+
+$font-family: (
+  $font-family-primary: $font-family-primary-content,
+  $font-family-title: $font-family-title-content,
+);

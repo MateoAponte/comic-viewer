@@ -1,0 +1,15 @@
+.comic {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  &-title {
+    font-family: map-get($font-family, $font-family-title);
+    letter-spacing: 0.35rem;
+    font-size: 4rem;
+    margin: 2rem 0px;
+    color: #ff856a;
+  }
+}
