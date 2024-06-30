@@ -25,6 +25,15 @@
       font-size: 0.9rem;
       color: map-get($font-colors, $color-base-dark-terciary);
       font-weight: 700;
+      &--skeleton {
+        margin-top: 1rem;
+        align-self: flex-start;
+        width: 60px;
+        padding: 0.2rem 0.4rem;
+        height: 1rem;
+        border-radius: 16px;
+        @include gradient($color-base-dark-terciary, $color-base-dark-terciary-gradient);
+      }
     }
     &-description {
       margin-top: 0.2rem;
@@ -34,6 +43,15 @@
       font-size: 1.1rem;
       font-weight: 500;
       color: map-get($font-colors, $color-complementary-light-primary);
+      &--skeleton {
+        align-self: flex-start;
+        margin-top: 0.6rem;
+        width: 100%;
+        padding: 0.2rem 0.4rem;
+        height: 1rem;
+        border-radius: 16px;
+        @include gradient($color-complementary-light-secundary, $color-complementary-light-secundary-gradient);
+      }
     }
   }
   &__header {
@@ -56,6 +74,13 @@
     &-title {
       font-size: 1.6rem;
       font-weight: 600;
+      &--skeleton {
+        width: 100px;
+        padding: 0.2rem 0.4rem;
+        height: 1rem;
+        border-radius: 16px;
+        @include gradient($color-complementary-light-secundary, $color-complementary-light-secundary-gradient);
+      }
     }
   }
 }

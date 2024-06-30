@@ -3,8 +3,11 @@ $color-secundary-background: 'b-light-gray';
 $color-base-dark-primary: 'p-dark-blue';
 $color-base-dark-secundary: 'p-dark-orange';
 $color-base-dark-terciary: 'p-light-orange';
+$color-base-dark-terciary-gradient: 'p-light-orange-gradient';
 $color-complementary-light-primary: 'c-dark-black';
+$color-complementary-light-primary-gradient: 'c-dark-black-gradient';
 $color-complementary-light-secundary: 'c-dark-gray';
+$color-complementary-light-secundary-gradient: 'c-dark-gray-gradient';
 $color-complementary-light-white: 'c-light-white';
 $color-complementary-background: 'c-light-brown';
 
@@ -14,8 +17,15 @@ $font-colors: (
   $color-base-dark-primary: #627cf1,
   $color-base-dark-secundary: #627cf1,
   $color-base-dark-terciary: #3b669e,
+  $color-base-dark-terciary-gradient: #84aee6,
   $color-complementary-background: #dcd8df,
   $color-complementary-light-primary: #454655,
-  $color-complementary-light-secundary: #4b5563,
+  $color-complementary-light-primary-gradient: #535466,
+  $color-complementary-light-secundary: #535464,
+  $color-complementary-light-secundary-gradient: #aeb6c2,
   $color-complementary-light-white: #f0f0f0,
 );
+
+@mixin gradient($color-1, $color-2) {
+  background: linear-gradient(90deg, map-get($font-colors, $color-1) 0%, map-get($font-colors, $color-2) 100%);
+}
