@@ -1,16 +1,24 @@
 <template>
-  <div> Helloo, let's go to review comics </div>
+  <ComicPreview v-if="checkProperties" :comicData="comicData" />
+  <ComicSkeleton v-else />
 </template>
 
-<script setup>
-import { onMounted, ref } from 'vue';
+<script setup lang="ts">
+import { computed, onMounted, ref } from 'vue';
 import { useComicStore } from '../../store';
 import { storeToRefs } from 'pinia';
+import ComicPreview from './components/ComicPreview.vue';
 
 const comicStore = useComicStore();
-const getComic = () => {
+const { comicData } = storeToRefs(comicStore);
+
+const checkProperties: Boolean = computed(() => {
+  return comicData.value !== null;
+});
+
+const getComic: void = () => {
   comicStore.updateComicNumber();
-  comicStore.fetchComic();
+  comicStore.fetchAndUpdateComicData();
 };
 
 onMounted(() => {

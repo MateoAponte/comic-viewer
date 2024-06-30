@@ -10,6 +10,6 @@
     letter-spacing: 0.35rem;
     font-size: 4rem;
     margin: 2rem 0px;
-    color: #ff856a;
+    color: map-get($font-colors, $color-complementary-light-primary);
   }
 }

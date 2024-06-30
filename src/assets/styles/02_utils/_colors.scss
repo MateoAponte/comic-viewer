@@ -2,14 +2,20 @@ $color-background: 'b-light-cream';
 $color-secundary-background: 'b-light-gray';
 $color-base-dark-primary: 'p-dark-blue';
 $color-base-dark-secundary: 'p-dark-orange';
-$color-complementary-light-primary: 'b-dark-black';
-$color-complementary-light-secundary: 'b-dark-gray';
+$color-base-dark-terciary: 'p-light-orange';
+$color-complementary-light-primary: 'c-dark-black';
+$color-complementary-light-secundary: 'c-dark-gray';
+$color-complementary-light-white: 'c-light-white';
+$color-complementary-background: 'c-light-brown';
 
 $font-colors: (
-  $color-background: #faf3e0,
+  $color-background: #f6f6f8,
   $color-secundary-background: #f0f0f0,
-  $color-base-dark-primary: #1e3a8a,
-  $color-base-dark-secundary: #f97316,
-  $color-complementary-light-primary: #000000,
+  $color-base-dark-primary: #627cf1,
+  $color-base-dark-secundary: #856be0,
+  $color-base-dark-terciary: #3b669e,
+  $color-complementary-background: #dcd8df,
+  $color-complementary-light-primary: #454655,
   $color-complementary-light-secundary: #4b5563,
+  $color-complementary-light-white: #f0f0f0,
 );

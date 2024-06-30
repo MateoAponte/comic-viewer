@@ -1,10 +1,8 @@
 export interface ComicData {
-  month: string;
   num: number;
   link: string;
-  year: string;
-  alt: string;
+  description: string;
   img: string;
   title: string;
-  day: string;
+  date: string;
 }
