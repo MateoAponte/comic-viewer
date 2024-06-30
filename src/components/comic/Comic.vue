@@ -1,6 +1,9 @@
 <template>
   <section class="comic__container">
     <ComicPreview :comicData="comicData" :skeleton="checkProperties">
+      <template #rating>
+        <ComicRating />
+      </template>
       <template #loader>
         <ComicLoader :trigger="comicLoader" />
       </template>
@@ -9,7 +12,6 @@
       </template>
     </ComicPreview>
     <ComicController :nextComic="handlerNextComic" :previousComic="handlerPreviousComic" :randomComic="handlerRandomComic" />
-    <ComicRating />
   </section>
 </template>
 

@@ -27,8 +27,8 @@ $font-colors: (
   $color-complementary-light-secundary: #535464,
   $color-complementary-light-secundary-gradient: #aeb6c2,
   $color-complementary-light-white: #f0f0f0,
-  $color-rating-base: #fcda7f,
-  $color-rating-checked: #fccf6f,
+  $color-rating-base: #f8d538,
+  $color-rating-checked: rgb(248, 197, 55),
 );
 
 @mixin gradient($color-1, $color-2) {

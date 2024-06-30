@@ -5,7 +5,10 @@
       <h5 class="comic-preview__header-title">{{ comicData.title }}</h5>
     </div>
     <div class="comic-preview__content">
-      <img class="comic-preview__content-image" :src="comicData.img" :alt="comicData.description" />
+      <div class="comic-preview__content-image">
+        <img :src="comicData.img" :alt="comicData.description" />
+        <slot name="rating" />
+      </div>
       <span class="comic-preview__content-date">{{ comicData.date }}</span>
       <span class="comic-preview__content-description"> {{ comicData.description }} </span>
     </div>

@@ -1,12 +1,21 @@
 .row {
-  text-align: center;
+  height: 3rem;
+  bottom: -65px;
+  right: 0px;
+  border-radius: 50px;
+  padding: 0.3rem 0.6rem;
+  background-color: rgba(map-get($font-colors, $color-background), 0.8);
+  border: 2px solid map-get($font-colors, $color-complementary-light-primary);
+  position: absolute;
 }
 
 .fa-star-o,
 .fa-star {
-  margin: 0px 0.4rem;
-  font-size: 4.5rem;
+  margin: 0px 0.1rem;
+  font-size: 2.7rem;
   cursor: pointer;
+  position: relative;
+  bottom: 3px;
 }
 .fa-star {
   color: map-get($font-colors, $color-rating-base);
