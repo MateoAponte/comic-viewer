@@ -11,3 +11,10 @@ export interface ComicResponse {
   title: string;
   day: string;
 }
+
+export interface ComicError {
+  code: number;
+  error: boolean;
+}
+
+export type ComicFetchResponse = ComicResponse | ComicError;

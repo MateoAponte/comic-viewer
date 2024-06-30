@@ -10,7 +10,7 @@ export default mergeConfig(
         '@': fileURLToPath(new URL('./src', import.meta.url)),
         '@test': fileURLToPath(new URL('./tests', import.meta.url)),
       },
-      setupFiles: ['./tests/setup.js'],
+      setupFiles: ['dotenv/config', './tests/setup.js'],
       environment: 'jsdom',
       exclude: [...configDefaults.exclude, 'tests/e2e/*', 'src/assets/*', 'playwright-report/*'],
       root: fileURLToPath(new URL('./', import.meta.url)),
