@@ -6,7 +6,7 @@
     </div>
     <div class="comic-preview__content">
       <div class="comic-preview__content-image--loader">
-        <grid-loader :loading="trigger" color="#454655" size="50px" margin="5px"></grid-loader>
+        <grid-loader :loading="true" color="#454655" size="50px" margin="5px"></grid-loader>
       </div>
       <span class="comic-preview__content-date--skeleton"></span>
       <span class="comic-preview__content-description--skeleton"> </span>
@@ -14,6 +14,6 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import GridLoader from 'vue-spinner/src/GridLoader.vue';
 </script>

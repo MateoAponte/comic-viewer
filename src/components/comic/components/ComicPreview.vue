@@ -16,7 +16,7 @@
 
 <script setup lang="ts">
 import { PropType } from 'vue';
-import { ComicData } from '../../../interfaces/store/ComicState';
+import { ComicData } from '../../../interfaces/store/ComicData';
 
 defineProps({
   comicData: { type: Object as PropType<ComicData>, required: true },

@@ -26,7 +26,8 @@ export const actions: ComicActions = {
       this.updateComicLoader(false);
     });
 
-    const date = !!month && !!day && !!year ? DateTime.fromObject({ year, month, day }).toFormat('MMMM dd, yyyy') : '';
+    const date =
+      !!month && !!day && !!year ? DateTime.fromObject({ year: parseInt(year), month: parseInt(month), day: parseInt(day) }).toFormat('MMMM dd, yyyy') : '';
     const number = !!num ? `# ${num}` : '';
     state.comicData.value = {
       title,
