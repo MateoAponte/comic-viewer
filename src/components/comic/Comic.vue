@@ -38,19 +38,19 @@ const checkProperties = computed(() => {
 
 const handlerRandomComic = () => {
   comicStore.updateComicNumber();
-  comicStore.fetchAndUpdateComicData();
+  comicStore.fetchAndUpdateComicData(comicNumber.value);
 };
 
 const handlerNextComic = () => {
   const newVal = comicNumber.value + 1;
   comicStore.updateComicNumber(newVal);
-  comicStore.fetchAndUpdateComicData();
+  comicStore.fetchAndUpdateComicData(newVal);
 };
 
 const handlerPreviousComic = () => {
   const newVal = comicNumber.value - 1;
   comicStore.updateComicNumber(newVal);
-  comicStore.fetchAndUpdateComicData();
+  comicStore.fetchAndUpdateComicData(newVal);
 };
 
 onMounted(() => {

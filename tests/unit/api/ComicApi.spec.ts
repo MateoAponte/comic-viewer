@@ -29,8 +29,6 @@ describe('The Login API File should works correctly and call axios to comunicate
     expect(auth).toEqual({ code: CODES_RESPONSE.CODE_ERROR, error: true });
   });
   test('Should call the fetchComicByQuery method and show an error when endpoints failed', async () => {
-    const QUERY = 5;
-
     axiosMocked.get.mockRejectedValueOnce(new Error('Endpoint failed'));
     expect(axios.get).rejects.toThrowError('Endpoint failed');
     expect(axios.get).toHaveBeenCalledTimes(1);

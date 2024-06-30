@@ -1,5 +1,5 @@
 export interface ComicActions {
-  fetchAndUpdateComicData: () => Promise<void>;
+  fetchAndUpdateComicData: (query: number) => Promise<void>;
   updateComicNumber: (value?: number) => void;
   updateComicLoader: (value?: boolean) => void;
 }
