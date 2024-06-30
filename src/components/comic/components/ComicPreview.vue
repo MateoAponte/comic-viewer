@@ -1,5 +1,5 @@
 <template>
-  <div class="comic-preview">
+  <div class="comic-preview" v-if="skeleton">
     <div class="comic-preview__header">
       <span class="comic-preview__header-num">{{ comicData.num }}</span>
       <h5 class="comic-preview__header-title">{{ comicData.title }}</h5>
@@ -9,7 +9,9 @@
       <span class="comic-preview__content-date">{{ comicData.date }}</span>
       <span class="comic-preview__content-description"> {{ comicData.description }} </span>
     </div>
+    <slot name="loader" />
   </div>
+  <slot v-else name="skeleton" />
 </template>
 
 <script setup lang="ts">
@@ -18,5 +20,6 @@ import { ComicData } from '../../../interfaces/store/ComicState';
 
 defineProps({
   comicData: { type: Object as PropType<ComicData>, required: true },
+  skeleton: { type: Boolean, required: true },
 });
 </script>

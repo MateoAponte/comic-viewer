@@ -7,4 +7,5 @@ export interface ComicState {
   comicData: ref<ComicDataStore>;
   comicPreferences: ref<Array<ComicData>>;
   comicNumber: ref<number>;
+  comicLoader: ref<boolean>;
 }

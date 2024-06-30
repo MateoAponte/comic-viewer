@@ -5,4 +5,5 @@ export const state: ComicState = {
   comicData: ref(null),
   comicPreferences: ref([]),
   comicNumber: ref(0),
+  comicLoader: ref(false),
 };
