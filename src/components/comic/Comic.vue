@@ -1,6 +1,9 @@
 <template>
   <section class="comic__container">
     <ComicPreview :comicData="comicData" :skeleton="checkProperties">
+      <!-- <template #settings>
+        <ComicSettings />
+      </template> -->
       <template #rating>
         <ComicRating />
       </template>
@@ -24,6 +27,7 @@ import ComicController from './components/ComicControllers.vue';
 import ComicSkeleton from './components/ComicSkeleton.vue';
 import ComicLoader from './components/ComicLoader.vue';
 import ComicRating from './components/ComicRating.vue';
+import ComicSettings from './components/ComicSettings.vue';
 
 const comicStore = useComicStore();
 const { comicData, comicNumber, comicLoader } = storeToRefs(comicStore);
