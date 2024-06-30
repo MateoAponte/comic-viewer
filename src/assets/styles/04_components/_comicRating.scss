@@ -1,0 +1,23 @@
+.comic-rating {
+}
+
+.row {
+  text-align: center;
+}
+
+.fa-star-o,
+.fa-star {
+  margin: 0px 0.4rem;
+  font-size: 4.5rem;
+  cursor: pointer;
+}
+.fa-star {
+  color: map-get($font-colors, $color-rating-base);
+}
+.fa-star-o {
+  color: map-get($font-colors, $color-rating-checked);
+}
+
+button {
+  font-family: 'Open Sans', sans-serif;
+}

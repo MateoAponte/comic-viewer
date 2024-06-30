@@ -9,6 +9,7 @@
       </template>
     </ComicPreview>
     <ComicController :nextComic="handlerNextComic" :previousComic="handlerPreviousComic" :randomComic="handlerRandomComic" />
+    <ComicRating />
   </section>
 </template>
 
@@ -20,6 +21,7 @@ import ComicPreview from './components/ComicPreview.vue';
 import ComicController from './components/ComicControllers.vue';
 import ComicSkeleton from './components/ComicSkeleton.vue';
 import ComicLoader from './components/ComicLoader.vue';
+import ComicRating from './components/ComicRating.vue';
 
 const comicStore = useComicStore();
 const { comicData, comicNumber, comicLoader } = storeToRefs(comicStore);

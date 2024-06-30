@@ -10,6 +10,9 @@ $color-complementary-light-secundary: 'c-dark-gray';
 $color-complementary-light-secundary-gradient: 'c-dark-gray-gradient';
 $color-complementary-light-white: 'c-light-white';
 $color-complementary-background: 'c-light-brown';
+$color-rating-base: 'r-rating-base';
+$color-rating-hover: 'r-rating-hover';
+$color-rating-checked: 'r-rating-checked';
 
 $font-colors: (
   $color-background: #f6f6f8,
@@ -24,6 +27,8 @@ $font-colors: (
   $color-complementary-light-secundary: #535464,
   $color-complementary-light-secundary-gradient: #aeb6c2,
   $color-complementary-light-white: #f0f0f0,
+  $color-rating-base: #fcda7f,
+  $color-rating-checked: #fccf6f,
 );
 
 @mixin gradient($color-1, $color-2) {
