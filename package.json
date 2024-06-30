@@ -13,7 +13,7 @@
     "test:e2e": "npx playwright test",
     "test:e2e:trace": "npx playwright test --trace on",
     "test:e2e:report": "npx playwright show-report",
-    "test:e2e:create": "npx playwright codegen https://init.oceanplatform-labs.com/login"
+    "test:e2e:create": "npx playwright codegen https://trusense-test.s3.amazonaws.com/index.html"
   },
   "dependencies": {
     "@kalimahapps/vue-icons": "^1.7.1",

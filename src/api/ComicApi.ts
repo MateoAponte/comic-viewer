@@ -12,7 +12,7 @@ class ComicApi {
   public async fetchComicByQuery(query: number): Promise<ComicFetchResponse> {
     try {
       if (typeof query !== 'number') throw 'No same type';
-      const response: AxiosResponse<ComicFetchResponse> = await axios.get(`${this.comicEndpointUrl}/${query}/info.0.json`);
+      const response: AxiosResponse<ComicFetchResponse> = await axios.get(`${this.comicEndpointUrl}?query=${query}`);
       return response.data;
     } catch (error) {
       return { code: CODES_RESPONSE.CODE_ERROR, error: true };
