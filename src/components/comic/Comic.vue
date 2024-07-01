@@ -1,20 +1,20 @@
 <template>
   <section class="comic__container">
-    <ComicPreview :comicData="comicData" :skeleton="checkProperties">
+    <Preview :comicData="comicData" :skeleton="checkProperties">
       <!-- <template #settings>
         <ComicSettings />
       </template> -->
       <template #rating>
-        <ComicRating />
+        <Rating />
       </template>
       <template #loader>
-        <ComicLoader :trigger="comicLoader" />
+        <Loader :trigger="comicLoader" />
       </template>
       <template #skeleton>
-        <ComicSkeleton />
+        <Skeleton />
       </template>
-    </ComicPreview>
-    <ComicController :nextComic="handlerNextComic" :previousComic="handlerPreviousComic" :randomComic="handlerRandomComic" />
+    </Preview>
+    <Controller :nextComic="handlerNextComic" :previousComic="handlerPreviousComic" :randomComic="handlerRandomComic" />
   </section>
 </template>
 
@@ -22,11 +22,11 @@
 import { computed, onMounted } from 'vue';
 import { useComicStore } from '../../store';
 import { storeToRefs } from 'pinia';
-import ComicPreview from './components/ComicPreview.vue';
-import ComicController from './components/ComicControllers.vue';
-import ComicSkeleton from './components/ComicSkeleton.vue';
-import ComicLoader from './components/ComicLoader.vue';
-import ComicRating from './components/ComicRating.vue';
+import Preview from './components/Preview.vue';
+import Controller from './components/Controllers.vue';
+import Skeleton from './components/Skeleton.vue';
+import Loader from './components/Loader.vue';
+import Rating from './components/Rating.vue';
 // import ComicSettings from './components/ComicSettings.vue';
 
 const comicStore = useComicStore();

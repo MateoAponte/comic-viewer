@@ -7,26 +7,31 @@ import { DateTime } from 'luxon';
 
 export const actions: ComicActions = {
   async fetchAndUpdateComicData(query) {
+    // The method that trigger the loader
     this.updateComicLoader(true);
     try {
       const response: ComicFetchResponse = await ComicApi.fetchComicByQuery(query).catch((err) => {
         return err;
       });
 
+      // Check if the response is an error
       if ('code' in response && response.error) {
         state.comicData.value = null;
         return;
       }
+
+      // Check if the response is contains correctly the comic data
       if (!('title' in response) || !('img' in response) || !('num' in response)) {
         throw new Error('Invalid response format');
       }
       const { month, day, year, num, alt, img, title, link } = response;
 
-      // Esperar a que la imagen se cargue
+      // Makes a preload of the image
       await loadImage(img).finally(() => {
         this.updateComicLoader(false);
       });
 
+      // Use luxon to parse the date to a easy to read format
       const date =
         !!month && !!day && !!year ? DateTime.fromObject({ year: parseInt(year), month: parseInt(month), day: parseInt(day) }).toFormat('MMMM dd, yyyy') : '';
       const number = !!num ? `# ${num}` : '';
@@ -43,6 +48,7 @@ export const actions: ComicActions = {
     }
   },
   updateComicNumber(value) {
+    // If the method is called without a param return a random ID, if have a param update with this value
     const randomNumber = Math.floor(Math.random() * (2952 - 1 + 1) + 1);
     state.comicNumber.value = !value ? randomNumber : value;
   },
