@@ -5,10 +5,9 @@
 </template>
 
 <script setup lang="ts">
-import { PropType } from 'vue';
 import PacmanLoader from 'vue-spinner/src/PacmanLoader.vue';
 
 defineProps({
-  trigger: { type: Object as PropType<boolean>, required: true },
+  trigger: { type: Boolean, required: true },
 });
 </script>

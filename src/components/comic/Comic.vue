@@ -27,7 +27,7 @@ import ComicController from './components/ComicControllers.vue';
 import ComicSkeleton from './components/ComicSkeleton.vue';
 import ComicLoader from './components/ComicLoader.vue';
 import ComicRating from './components/ComicRating.vue';
-import ComicSettings from './components/ComicSettings.vue';
+// import ComicSettings from './components/ComicSettings.vue';
 
 const comicStore = useComicStore();
 const { comicData, comicNumber, comicLoader } = storeToRefs(comicStore);
