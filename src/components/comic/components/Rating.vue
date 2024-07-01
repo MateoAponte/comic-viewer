@@ -37,8 +37,10 @@ watch(comicNumber, (newVal, oldVal) => {
 });
 
 const starClass = (index: number) => {
+  // This one firts check if a star is hovered to modify the styles
   if (hoveredStar.value !== null) {
     return index <= hoveredStar.value ? 'fa-star' : 'fa-star-o';
+    // If doesnt are hovered but if they are clicked to update the active stars this one gonna modify again the styles
   } else if (activeStar.value !== null) {
     return index <= activeStar.value ? 'fa-star' : 'fa-star-o';
   } else {
@@ -47,6 +49,9 @@ const starClass = (index: number) => {
 };
 
 const checkStars = (index: number) => {
+  // Check if a star is hovered or is checked to determine if the star gonna be print complete or only the layout
+  // In other words, if is active, gonna print the fill star
+  // If not, print the bordered star
   return (activeStar.value !== null && activeStar.value >= index) || (hoveredStar.value !== null && hoveredStar.value >= index);
 };
 
