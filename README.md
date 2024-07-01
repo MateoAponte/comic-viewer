@@ -1,5 +1,7 @@
 # Trusense Comic Test
 
+![Preview of the application comic generator](./src/assets/image/appPreview.png)
+
 ## About the project
 
 This project is created to solve a Tech test about a Simple Comic Generator.
