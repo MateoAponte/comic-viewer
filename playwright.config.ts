@@ -21,7 +21,7 @@ export default defineConfig({
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-    baseURL: 'https://trusense-test.s3.amazonaws.com/index.html',
+    baseURL: 'http://comic-generator.com.s3-website-us-east-1.amazonaws.com',
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
   },

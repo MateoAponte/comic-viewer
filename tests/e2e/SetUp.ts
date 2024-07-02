@@ -4,12 +4,12 @@ import { ComicPageInterface } from './interfaces/ComicPageInterface';
 
 export const test = base.extend<{ comic: ComicPageInterface; page: Page }>({
   comic: async ({ page }, use) => {
-    await page.goto('http://localhost:5173/');
+    await page.goto('http://comic-generator.com.s3-website-us-east-1.amazonaws.com');
     const ComicInfo = new Comic(page);
     await use(ComicInfo);
   },
   page: async ({ page }, use) => {
-    await page.goto('http://localhost:5173/');
+    await page.goto('http://comic-generator.com.s3-website-us-east-1.amazonaws.com');
     await use(page);
   },
 });
