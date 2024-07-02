@@ -10,6 +10,8 @@ The URL to access to this project is: [Comic Generator Link](http://comic-genera
 
 This test was created with the techs: ![Vue.js](https://img.shields.io/badge/vuejs-%2335495e.svg?style=for-the-badge&logo=vuedotjs&logoColor=%234FC08D) `[Vue 3, Pinia, SFC's components ]` + ![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white) `[7-1 pattern, BEM Methodology]` + ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white) `[Vite, Vitest]` + ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 
+The Cloud Infrastructure in develop in: ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white) `Lambdas, S3, Gateway, CodePipeline`
+
 To manage the information and print the components is used the `Statefull and Stateless pattern`
 
 ## How setup the project?
