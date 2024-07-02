@@ -1,0 +1,21 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 20
+    commands:
+      - npm install
+  pre_build:
+    commands:
+      - echo "PreBuild - Run Unit Testing"
+      - npm run test:unit
+      - echo "PreBuild - Run E2E Testing"
+      - npm run test:e2e:trace
+  build:
+    commands:
+      - npm run build
+artifacts:
+  files:
+    - '**/*'
+  base-directory: 'dist'
