@@ -21,7 +21,7 @@ describe('The Login API File should works correctly and call axios to comunicate
     const QUERY = 5;
     const response = await ComicApi.fetchComicByQuery(QUERY);
     expect(axios.get).toHaveBeenCalledTimes(1);
-    expect(axios.get).toHaveBeenCalledWith(`${getObjectRequest(import.meta.env.VITE_APP_COMIC_API_URL).url}/${QUERY}/info.0.json`);
+    expect(axios.get).toHaveBeenCalledWith(`${getObjectRequest(import.meta.env.VITE_APP_COMIC_API_URL).url}?query=${QUERY}`);
     expect(response).toEqual(ComicJson);
   });
   test('Should call the fetchComicByQuery method and show an error when the param is invalid', async () => {
