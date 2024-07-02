@@ -61,7 +61,7 @@ describe('The Comic Action Store File should works correctly and should update t
     const QUERY = 25;
     await comicStore.fetchAndUpdateComicData(QUERY);
     expect(axios.get).toHaveBeenCalledTimes(1);
-    expect(axios.get).toHaveBeenCalledWith(`${getObjectRequest(import.meta.env.VITE_APP_COMIC_API_URL).url}/${QUERY}/info.0.json`);
+    expect(axios.get).toHaveBeenCalledWith(`${getObjectRequest(import.meta.env.VITE_APP_COMIC_API_URL).url}?query=${QUERY}`);
     expect(comicData.value).toEqual(ComicParsed);
   });
 
