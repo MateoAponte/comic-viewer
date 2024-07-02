@@ -8,6 +8,8 @@ phases:
       - npm install
   pre_build:
     commands:
+      - echo "PreBuild - Install Playwright"
+      - npm init playwright@latest
       - echo "PreBuild - Run Unit Testing"
       - npm run test:unit
       - echo "PreBuild - Run E2E Testing"
