@@ -146,6 +146,10 @@ This project is created following the architecture created at the star of the pl
 
 ![Software Architecture](./src/assets/image/softwareArchitecture.png)
 
+DNS Propagation Successfully:
+
+![alt text](./src/assets/image/Propagation.png)
+
 <div align="center">
   <a href="#">
     <img src="https://img.shields.io/badge/FRONT AS A SCIENCE-red?logo=undertale&style=for-the-badge">
