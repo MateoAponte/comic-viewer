@@ -54,6 +54,7 @@ export class Comic implements ComicPageInterface {
     const num = (await page.locator('.comic-preview__header-num').textContent()) || '';
     const date = (await page.locator('.comic-preview__content-date').textContent()) || '';
     const description = (await page.locator('.comic-preview__content-description').textContent()) || '';
+
     this.lastValue = comicData.getData();
     comicData.updateData(title, img, num, date, description);
     expect(title?.length).toBeGreaterThan(0);
