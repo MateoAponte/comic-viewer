@@ -10,7 +10,7 @@
     "test:unit": "vitest --typecheck",
     "test:unit:coverage": "vitest run --coverage --typecheck",
     "test:integration": "vitest --typecheck",
-    "test:e2e": "npx playwright test",
+    "test:e2e": "playwright test",
     "test:e2e:trace": "npx playwright test --trace on",
     "test:e2e:report": "npx playwright show-report",
     "test:e2e:create": "npx playwright codegen http://comic-generator.com.s3-website-us-east-1.amazonaws.com/index.html"
