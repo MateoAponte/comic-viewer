@@ -52,7 +52,7 @@ Vitest provides us a fastly way to run and build project. We can have the functi
 
 The project doesn't have any complex logic to use, only run the project and later go to the url:
 
-[Simple Comic Generator](`http://localhost:5173/`) (**Important: will always be the same as long as there are no other projects sharing the port.**)
+[Simple Comic Generator](https://www.comic-generator.online/) (**Important: will always be the same as long as there are no other projects sharing the port.**)
 
 - **Firts render**
 
