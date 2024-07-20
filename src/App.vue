@@ -4,7 +4,14 @@ import Comic from './components/comic/Comic.vue';
 
 <template>
   <section class="comic">
-    <h3 class="comic-title">Comic Generator</h3>
+    <div className="comic-title__header">
+      <h3 class="comic-title">
+        <span class="comic-title--colored">Com</span>ic
+      </h3>
+      <h3 class="comic-title comic-title--moved">
+        <span class="comic-title--colored">Vi</span>ewer
+      </h3>
+    </div>
     <Comic />
   </section>
 </template>

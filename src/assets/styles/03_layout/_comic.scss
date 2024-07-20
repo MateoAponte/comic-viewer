@@ -3,13 +3,22 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0 20vw;
   &-title {
     font-family: map-get($font-family, $font-family-title);
     letter-spacing: 0.35rem;
     font-size: 4rem;
-    margin: 2rem 0px;
-    color: map-get($font-colors, $color-complementary-light-primary);
+    margin-top: 2rem;
+    letter-spacing: 0.2rem;
+    color: map-get($font-colors, $color-complementary-light-secundary);
+    @include setComicShadowText(map-get($font-colors, $color-complementary-light-primary));
+    &--moved {
+      margin: 0.5rem 0px 2rem;
+      padding-left: 2.5rem;
+    }
+    &--colored {
+      color: map-get($font-colors, $color-complementary-primary);
+    }
   }
 }
