@@ -1,5 +1,11 @@
 <template>
   <div class="row">
+    <span class="row__text">
+      <span class="row__text-label">
+        {{ !!activeStar ? activeStar + 1 : 'No' }}</span
+      >
+      <span class="row__text-sublabel">Rating</span>
+    </span>
     <span
       v-for="(_, index) in stars"
       :key="index"
@@ -52,7 +58,10 @@ const checkStars = (index: number) => {
   // Check if a star is hovered or is checked to determine if the star gonna be print complete or only the layout
   // In other words, if is active, gonna print the fill star
   // If not, print the bordered star
-  return (activeStar.value !== null && activeStar.value >= index) || (hoveredStar.value !== null && hoveredStar.value >= index);
+  return (
+    (activeStar.value !== null && activeStar.value >= index) ||
+    (hoveredStar.value !== null && hoveredStar.value >= index)
+  );
 };
 
 const hoverStar = (index: number) => {

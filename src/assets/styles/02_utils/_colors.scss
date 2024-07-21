@@ -16,23 +16,27 @@ $color-rating-hover: 'r-rating-hover';
 $color-rating-checked: 'r-rating-checked';
 
 $font-colors: (
-  $color-background: #F6F5F5,
-  $color-secundary-background: #F7F5DD,
+  $color-background: #f6f5f5,
+  $color-secundary-background: #f7f5dd,
   $color-complementary-primary: #eb4466,
-  $color-base-dark-primary: #627cf1,
+  $color-base-dark-primary: #3c91b3,
   $color-base-dark-secundary: #627cf1,
   $color-base-dark-terciary: #3b669e,
   $color-base-dark-terciary-gradient: #84aee6,
-  $color-complementary-background: #BFA5A6,
-  $color-complementary-light-primary: #3a3c46,
+  $color-complementary-background: #e2e2e2,
+  $color-complementary-light-primary: #3b3e4b,
   $color-complementary-light-primary-gradient: #535466,
   $color-complementary-light-secundary: #535464,
   $color-complementary-light-secundary-gradient: #aeb6c2,
   $color-complementary-light-white: #f0f0f0,
-  $color-rating-base: #f8d538,
-  $color-rating-checked: rgb(248, 197, 55),
+  $color-rating-base: rgb(248, 197, 55),
+  $color-rating-checked: #f1bf1c,
 );
 
 @mixin gradient($color-1, $color-2) {
-  background: linear-gradient(90deg, map-get($font-colors, $color-1) 0%, map-get($font-colors, $color-2) 100%);
+  background: linear-gradient(
+    90deg,
+    map-get($font-colors, $color-1) 0%,
+    map-get($font-colors, $color-2) 100%
+  );
 }
