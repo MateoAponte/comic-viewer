@@ -3,16 +3,77 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  padding: 0 20vw;
+  align-items: center;
+
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.7rem;
+    padding: 0.7rem 10vw 0;
+    width: 100%;
+    max-width: 100vw;
+    background: #fff;
+    border-bottom: 4px dashed
+      map-get($font-colors, $color-complementary-light-primary);
+    &__section {
+      height: 100%;
+      width: 50vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    &:nth-last-child(1) {
+      justify-self: flex-end;
+      align-self: flex-end;
+    }
+  }
+  &-social {
+    height: 3rem;
+    width: 250px;
+    background-color: map-get($font-colors, $color-complementary-primary);
+    transform: skewX(-25deg);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    position: relative;
+    align-self: flex-end;
+    bottom: 0.6rem;
+    @include setComicShadowBox(
+      map-get($font-colors, $color-complementary-light-primary)
+    );
+    &__divition {
+      padding-top: 0.5rem;
+      text-align: center;
+      width: 100%;
+      font-size: 2rem;
+      color: #fff;
+      &:not(:nth-last-child(1)) {
+        height: 98%;
+        border-right: 3px solid
+          map-get($font-colors, $color-complementary-light-primary);
+        svg {
+          position: relative;
+          bottom: 0.3rem;
+        }
+      }
+      svg {
+        cursor: pointer;
+      }
+    }
+  }
   &-title {
     font-family: map-get($font-family, $font-family-title);
     letter-spacing: 0.35rem;
-    font-size: 4rem;
-    margin-top: 2rem;
-    letter-spacing: 0.2rem;
-    color: map-get($font-colors, $color-complementary-light-secundary);
-    @include setComicShadowText(map-get($font-colors, $color-complementary-light-primary));
+    font-size: 2rem;
+    margin-top: 1rem;
+    letter-spacing: 0.1rem;
+    color: map-get($font-colors, $color-background);
+
+    @include setComicShadowText(
+      map-get($font-colors, $color-complementary-light-primary)
+    );
     &--moved {
       margin: 0.5rem 0px 2rem;
       padding-left: 2.5rem;
@@ -20,5 +81,13 @@
     &--colored {
       color: map-get($font-colors, $color-complementary-primary);
     }
+  }
+
+  &__container {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border-radius: 8px;
+    background: #fff;
+    border: 2px solid map-get($font-colors, $color-complementary-light-primary);
   }
 }
