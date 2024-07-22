@@ -7,17 +7,114 @@
 
   &__control {
     cursor: pointer;
-    font-size: 4rem;
     color: map-get($font-colors, $color-base-dark-secundary);
     &--left {
-      margin-right: 2rem;
+      position: relative;
+      background-color: #fff;
+      padding: 0px 16px;
+      height: 60px;
+      width: 160px;
+      display: inline-block;
+      color: white;
+      border: 2px solid
+        map-get($font-colors, $color-complementary-light-primary);
+      border-left: none;
+      z-index: 1;
+      margin-top: -15px;
+      margin-right: 3.2rem;
+      &:after {
+        content: '';
+        position: absolute;
+        left: 0%;
+        z-index: -1;
+        width: 40px;
+        height: 40px;
+        background-color: #fff;
+        border-left: 2px solid
+          map-get($font-colors, $color-complementary-light-primary);
+        border-top: 2px solid
+          map-get($font-colors, $color-complementary-light-primary);
+        transform: rotate(-45deg) translate(-19.5px, -10px);
+      }
+      .comic-controller__control-text {
+        left: -7px;
+      }
+    }
+    &-text {
+      font-family: map-get($font-family, $font-family-title);
+      letter-spacing: 0.35rem;
+      font-size: 2rem;
+      letter-spacing: 0.15rem;
+      color: map-get($font-colors, $color-complementary-primary);
+      @include setComicShadowText(
+        map-get($font-colors, $color-complementary-light-primary)
+      );
+      position: relative;
+      top: 13%;
     }
     &--center {
-      font-size: 5.3rem;
-      padding-top: 9px;
+      position: relative;
+      background-color: #fff;
+      color: map-get($font-colors, $color-complementary-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      height: 60px;
+      width: 60px;
+
+      z-index: 1;
+      svg {
+        transition: all 0.6s ease;
+        &:hover {
+          transform: rotate(135deg);
+        }
+      }
+      &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        left: 0%;
+        z-index: -1;
+        width: 60px;
+        height: 60px;
+        background-color: #fff;
+        border: 2px solid
+          map-get($font-colors, $color-complementary-light-primary);
+        transform: rotate(-45deg);
+      }
     }
     &--right {
-      margin-left: 2rem;
+      position: relative;
+      background-color: #fff;
+      padding: 0px 16px;
+      height: 60px;
+      width: 160px;
+      display: inline-block;
+      color: white;
+      border: 2px solid
+        map-get($font-colors, $color-complementary-light-primary);
+      border-right: none;
+      z-index: 1;
+      margin-top: -15px;
+      margin-left: 3.2rem;
+      &:after {
+        content: '';
+        position: absolute;
+        left: 100%;
+        z-index: -1;
+        width: 40px;
+        height: 40px;
+        background-color: #fff;
+        border-right: 2px solid
+          map-get($font-colors, $color-complementary-light-primary);
+        border-bottom: 2px solid
+          map-get($font-colors, $color-complementary-light-primary);
+        transform: rotate(-45deg) translate(-19.5px, -9.5px);
+      }
+      .comic-controller__control-text {
+        right: -6px;
+      }
     }
   }
 }

@@ -7,11 +7,21 @@
     </div>
     <div class="comic-preview__content">
       <div class="comic-preview__content-image">
-        <img class="comic-preview__content-image-preview" :src="comicData.img" :alt="comicData.description" />
+        <img
+          class="comic-preview__content-image-preview"
+          :src="comicData.img"
+          :alt="comicData.description"
+        />
         <slot name="rating" />
       </div>
-      <span class="comic-preview__content-date">{{ comicData.date }}</span>
-      <span class="comic-preview__content-description"> {{ comicData.description }} </span>
+      <div class="comic-preview__content-date">
+        <span class="comic-preview__content-value">
+          {{ comicData.date }}
+        </span>
+      </div>
+      <span class="comic-preview__content-description">
+        {{ comicData.description }}
+      </span>
     </div>
     <slot name="loader" />
   </div>

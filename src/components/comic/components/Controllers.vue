@@ -1,20 +1,27 @@
 <template>
   <div class="comic-controller">
-    <span class="comic-controller__control comic-controller__control--left">
-      <BsArrowLeftSquareFill @click="previousComic" />
+    <span
+      class="comic-controller__control comic-controller__control--left"
+      @click="previousComic"
+    >
+      <span class="comic-controller__control-text"> Anterior </span>
     </span>
-    <span class="comic-controller__control comic-controller__control--center">
-      <McRandomFill @click="randomComic" />
+    <span
+      class="comic-controller__control comic-controller__control--center"
+      @click="randomComic"
+    >
+      <McRandomFill />
     </span>
-    <span class="comic-controller__control comic-controller__control--right">
-      <BsArrowRightSquareFill @click="nextComic" />
+    <span
+      class="comic-controller__control comic-controller__control--right"
+      @click="nextComic"
+    >
+      <span class="comic-controller__control-text"> Siguiente </span>
     </span>
   </div>
 </template>
 
 <script setup lang="ts">
-import { BsArrowRightSquareFill } from '@kalimahapps/vue-icons';
-import { BsArrowLeftSquareFill } from '@kalimahapps/vue-icons';
 import { McRandomFill } from '@kalimahapps/vue-icons';
 import { PropType } from 'vue';
 
