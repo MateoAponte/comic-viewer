@@ -4,10 +4,19 @@
     3px 3px $color, 4px 4px $color, 5px 5px $color, 6px 6px $color,
     7px 7px $color, 8px 8px $color, 9px 9px $color;
 }
+@mixin setComicShadowTextMin($color) {
+  text-shadow: -1px 0 $color, 0 1px $color, 1px 0 $color, 0 -1px $color,
+    -2px 2px 0 $color, 2px 2px 0 $color, 1px 1px $color, 2px 2px $color,
+    3px 3px $color;
+}
 
 @mixin setComicShadowBox($color) {
   box-shadow: -1px 0 $color, 0 1px $color, 1px 0 $color, 0 -1px $color,
     -2px 2px 0 $color, 2px 2px 0 $color, 1px 1px $color, 2px 2px $color,
     3px 3px $color, 4px 4px $color, 5px 5px $color, 6px 6px $color,
     7px 7px $color, 8px 8px $color, 9px 9px $color;
+}
+
+@mixin setComicShadowSvg($color) {
+  filter: drop-shadow(2px 1px 1px $color);
 }

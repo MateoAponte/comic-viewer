@@ -90,4 +90,35 @@
     background: #fff;
     border: 2px solid map-get($font-colors, $color-complementary-light-primary);
   }
+
+  &-footer {
+    width: 100%;
+    text-align: center;
+    margin-top: 5rem;
+    padding: 0.8rem;
+    background-color: map-get($font-colors, $color-complementary-primary);
+    border-top: 2px solid
+      map-get($font-colors, $color-complementary-light-primary);
+
+    &__text {
+      font-size: 1rem;
+      letter-spacing: 0.1rem;
+      font-family: map-get($font-family, $font-family-title);
+      color: map-get($font-colors, $color-background);
+      @include setComicShadowTextMin(
+        map-get($font-colors, $color-complementary-light-primary)
+      );
+    }
+
+    svg {
+      position: relative;
+      top: 0.34rem;
+      transform: rotate(-90deg);
+      margin-left: 0.3rem;
+      font-size: 1.5rem;
+      filter: drop-shadow(
+        -1px 3px 1px map-get($font-colors, $color-complementary-light-primary)
+      );
+    }
+  }
 }
