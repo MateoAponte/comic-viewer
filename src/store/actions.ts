@@ -10,21 +10,46 @@ export const actions: ComicActions = {
     // The method that trigger the loader
     this.updateComicLoader(true);
     try {
-      const response: ComicFetchResponse = await ComicApi.fetchComicByQuery(query).catch((err) => {
-        return err;
-      });
+      let response: ComicFetchResponse;
+      if (!!query) {
+        response = await ComicApi.fetchComicByQuery(query).catch((err) => {
+          return err;
+        });
+      } else {
+        response = await ComicApi.fetchCurrentComic().catch((err) => {
+          return err;
+        });
+      }
 
       // Check if the response is an error
       if ('code' in response && response.error) {
         state.comicData.value = null;
         return;
       }
-
       // Check if the response is contains correctly the comic data
-      if (!('title' in response) || !('img' in response) || !('num' in response)) {
+      if (
+        !('title' in response) ||
+        !('img' in response) ||
+        !('num' in response)
+      ) {
         throw new Error('Invalid response format');
       }
+
+      if (!query) {
+        const { num } = response;
+        this.updateComicControllers({
+          last: num,
+        });
+      }
+
       const { month, day, year, num, alt, img, title, link } = response;
+      const getPrevious = num - 1;
+      console.log(getPrevious);
+
+      this.updateComicControllers({
+        first: getPrevious <= 0 ? 0 : getPrevious,
+        current: query || num,
+      });
 
       // Makes a preload of the image
       await loadImage(img).finally(() => {
@@ -33,7 +58,13 @@ export const actions: ComicActions = {
 
       // Use luxon to parse the date to a easy to read format
       const date =
-        !!month && !!day && !!year ? DateTime.fromObject({ year: parseInt(year), month: parseInt(month), day: parseInt(day) }).toFormat('MMMM dd, yyyy') : '';
+        !!month && !!day && !!year
+          ? DateTime.fromObject({
+              year: parseInt(year),
+              month: parseInt(month),
+              day: parseInt(day),
+            }).toFormat('MMMM dd, yyyy')
+          : '';
       const number = !!num ? `# ${num}` : '';
       state.comicData.value = {
         title,
@@ -46,6 +77,11 @@ export const actions: ComicActions = {
     } catch (err) {
       console.error(err);
     }
+  },
+  updateComicControllers(value) {
+    const copyComicControllers = { ...state.comicControllers.value };
+
+    state.comicControllers.value = { ...copyComicControllers, ...value };
   },
   updateComicNumber(value) {
     // If the method is called without a param return a random ID, if have a param update with this value

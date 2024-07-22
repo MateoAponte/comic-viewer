@@ -20,7 +20,7 @@ $font-colors: (
   $color-secundary-background: #f7f5dd,
   $color-complementary-primary: #eb4466,
   $color-base-dark-primary: #3c91b3,
-  $color-base-dark-secundary: #338DB0,
+  $color-base-dark-secundary: #338db0,
   $color-base-dark-terciary: #3b669e,
   $color-base-dark-terciary-gradient: #84aee6,
   $color-complementary-background: #e2e2e2,
@@ -30,7 +30,7 @@ $font-colors: (
   $color-complementary-light-secundary-gradient: #aeb6c2,
   $color-complementary-light-white: #f0f0f0,
   $color-rating-base: rgb(248, 197, 55),
-  $color-rating-checked: #f1bf1c,
+  $color-rating-checked: #555b75,
 );
 
 @mixin gradient($color-1, $color-2) {

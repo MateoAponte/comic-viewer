@@ -8,14 +8,27 @@
   &__control {
     cursor: pointer;
     color: map-get($font-colors, $color-base-dark-secundary);
+    display: flex;
+    &:disabled {
+      cursor: not-allowed;
+      background-color: #e0e0e0;
+      border: 2px solid
+        rgba(map-get($font-colors, $color-complementary-light-primary), 0.8);
+      &:after {
+        border: 2px solid
+          rgba(map-get($font-colors, $color-complementary-light-primary), 0.8);
+        background-color: #e9e9e9;
+      }
+      .comic-controller__control-text {
+        color: rgba(map-get($font-colors, $color-complementary-primary), 0.8);
+      }
+    }
     &--left {
       position: relative;
       background-color: #fff;
       padding: 0px 16px;
       height: 60px;
       width: 160px;
-      display: inline-block;
-      color: white;
       border: 2px solid
         map-get($font-colors, $color-complementary-light-primary);
       border-left: none;
@@ -25,15 +38,17 @@
       &:after {
         content: '';
         position: absolute;
+        top: 0px;
         left: 0%;
         z-index: -1;
         width: 40px;
         height: 40px;
         background-color: #fff;
+        border: none !important;
         border-left: 2px solid
-          map-get($font-colors, $color-complementary-light-primary);
+          map-get($font-colors, $color-complementary-light-primary) !important;
         border-top: 2px solid
-          map-get($font-colors, $color-complementary-light-primary);
+          map-get($font-colors, $color-complementary-light-primary) !important;
         transform: rotate(-45deg) translate(-19.5px, -10px);
       }
       .comic-controller__control-text {
@@ -46,6 +61,7 @@
       font-size: 2rem;
       letter-spacing: 0.15rem;
       color: map-get($font-colors, $color-complementary-primary);
+      margin-top: 2px;
       @include setComicShadowText(
         map-get($font-colors, $color-complementary-light-primary)
       );
@@ -90,8 +106,6 @@
       padding: 0px 16px;
       height: 60px;
       width: 160px;
-      display: inline-block;
-      color: white;
       border: 2px solid
         map-get($font-colors, $color-complementary-light-primary);
       border-right: none;
@@ -101,15 +115,17 @@
       &:after {
         content: '';
         position: absolute;
+        top: 0px;
         left: 100%;
         z-index: -1;
         width: 40px;
         height: 40px;
         background-color: #fff;
+        border: none !important;
         border-right: 2px solid
-          map-get($font-colors, $color-complementary-light-primary);
+          map-get($font-colors, $color-complementary-light-primary) !important;
         border-bottom: 2px solid
-          map-get($font-colors, $color-complementary-light-primary);
+          map-get($font-colors, $color-complementary-light-primary) !important;
         transform: rotate(-45deg) translate(-19.5px, -9.5px);
       }
       .comic-controller__control-text {

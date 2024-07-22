@@ -1,6 +1,10 @@
 <template>
   <section class="comic__container">
-    <Preview :comicData="comicData" :skeleton="checkProperties">
+    <Preview
+      :comicData="comicData"
+      :skeleton="checkProperties"
+      :controlData="comicControllers"
+    >
       <!-- <template #settings>
         <ComicSettings />
       </template> -->
@@ -14,7 +18,12 @@
         <Skeleton />
       </template>
     </Preview>
-    <Controller :nextComic="handlerNextComic" :previousComic="handlerPreviousComic" :randomComic="handlerRandomComic" />
+    <Controller
+      :nextComic="handlerNextComic"
+      :previousComic="handlerPreviousComic"
+      :randomComic="handlerRandomComic"
+      :controlData="comicControllers"
+    />
   </section>
 </template>
 
@@ -30,7 +39,8 @@ import Rating from './components/Rating.vue';
 // import ComicSettings from './components/ComicSettings.vue';
 
 const comicStore = useComicStore();
-const { comicData, comicNumber, comicLoader } = storeToRefs(comicStore);
+const { comicData, comicNumber, comicLoader, comicControllers } =
+  storeToRefs(comicStore);
 
 const checkProperties = computed(() => {
   return comicData.value !== null;
@@ -41,6 +51,10 @@ const handlerRandomComic = () => {
   comicStore.fetchAndUpdateComicData(comicNumber.value);
 };
 
+const getCurrentComic = () => {
+  comicStore.fetchAndUpdateComicData();
+};
+
 const handlerNextComic = () => {
   const newVal = comicNumber.value + 1;
   comicStore.updateComicNumber(newVal);
@@ -48,12 +62,11 @@ const handlerNextComic = () => {
 };
 
 const handlerPreviousComic = () => {
-  const newVal = comicNumber.value - 1;
-  comicStore.updateComicNumber(newVal);
-  comicStore.fetchAndUpdateComicData(newVal);
+  comicStore.updateComicNumber(comicControllers.value.first);
+  comicStore.fetchAndUpdateComicData(comicControllers.value.first);
 };
 
 onMounted(() => {
-  handlerRandomComic();
+  getCurrentComic();
 });
 </script>
