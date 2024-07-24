@@ -1,0 +1,31 @@
+.tab {
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  &__content {
+    width: auto;
+    height: auto;
+    position: relative;
+    z-index: 5;
+  }
+  &__activator {
+    display: flex;
+    flex-direction: row;
+    &-element {
+      background: map-get($font-colors, $color-complementary-primary);
+      position: relative;
+      top: 5px;
+      z-index: 2;
+      border-radius: 6px 6px 0px 0px;
+      margin-right: 0.5rem;
+      padding: 0.6rem 1.2rem;
+      font-weight: 600;
+      color: #fff;
+      cursor: pointer;
+      border: 2px solid
+        map-get($font-colors, $color-complementary-light-primary);
+    }
+  }
+}
