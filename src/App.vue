@@ -4,7 +4,9 @@ import Header from './components/header/Header.vue';
 import Footer from './components/footer/Footer.vue';
 import Tabs from './components/common/Tabs.vue';
 import { TabInfo } from './interfaces/components/tabs/tabs';
-import { defineComponent, ref } from 'vue';
+import { onMounted, ref } from 'vue';
+import Rating from './components/rating/Rating.vue';
+import SessionManagement from './helpers/SessionMagagement';
 
 const tabInfo: TabInfo[] = [
   {
@@ -13,14 +15,16 @@ const tabInfo: TabInfo[] = [
   },
   {
     name: 'Puntuados',
-    component: defineComponent({
-      template: `<div>Puntuados Component Content</div>`,
-    }),
+    component: Rating,
   },
 ];
 
 const selected = ref<number>(0);
 const changeSelection = (evt: number) => (selected.value = evt);
+
+onMounted(() => {
+  SessionManagement.init();
+});
 </script>
 
 <template>

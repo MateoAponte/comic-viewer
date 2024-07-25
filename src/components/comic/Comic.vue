@@ -9,7 +9,7 @@
         <ComicSettings />
       </template> -->
       <template #rating>
-        <Rating />
+        <Rating @update:rating="updateRating" />
       </template>
       <template #loader>
         <Loader :trigger="comicLoader" />
@@ -45,6 +45,10 @@ const { comicData, comicNumber, comicLoader, comicControllers } =
 const checkProperties = computed(() => {
   return comicData.value !== null;
 });
+
+const updateRating = (evt: number) => {
+  comicStore.updateComicRating(comicData.value, evt);
+};
 
 const handlerRandomComic = () => {
   comicStore.updateComicNumber();

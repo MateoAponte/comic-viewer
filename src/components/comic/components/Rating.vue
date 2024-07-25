@@ -28,6 +28,8 @@ import { FlFilledStarEmphasis } from '@kalimahapps/vue-icons';
 import { useComicStore } from '../../../store';
 import { storeToRefs } from 'pinia';
 
+const emits = defineEmits(['update:rating']);
+
 const stars = ref<number[]>([0, 1, 2, 3, 4]);
 const activeStar = ref<number | null>(null);
 const hoveredStar = ref<number | null>(null);
@@ -74,5 +76,6 @@ const resetStars = () => {
 
 const selectStar = (index: number) => {
   activeStar.value = index;
+  emits('update:rating', activeStar.value);
 };
 </script>

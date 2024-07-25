@@ -18,3 +18,13 @@ export interface ComicError {
 }
 
 export type ComicFetchResponse = ComicResponse | ComicError;
+
+export interface ComicRated {
+  num: number;
+  title: string;
+  img: string;
+  alt: string;
+  rating: number;
+}
+
+export type ComicRateResponse = ComicRated | ComicError;

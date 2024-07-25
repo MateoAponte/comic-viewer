@@ -1,5 +1,7 @@
 import ComicApi from '../api/ComicApi';
+import Comic from '../components/comic/Comic.vue';
 import { loadImage } from '../helpers/LoadImage';
+import SessionMagagement from '../helpers/SessionMagagement';
 import { ComicFetchResponse } from '../interfaces/ComicResponse';
 import { ComicActions } from '../interfaces/store/ComicActions';
 import { state } from './state';
@@ -85,10 +87,28 @@ export const actions: ComicActions = {
   },
   updateComicNumber(value) {
     // If the method is called without a param return a random ID, if have a param update with this value
-    const randomNumber = Math.floor(Math.random() * (2952 - 1 + 1) + 1);
+    const randomNumber = Math.floor(
+      Math.random() * (state.comicControllers.last - 1 + 1) + 1
+    );
     state.comicNumber.value = !value ? randomNumber : value;
   },
   updateComicLoader(value) {
     state.comicLoader.value = value;
+  },
+  updateComicRating(comic, rating) {
+    const getComicNum = parseInt(
+      comic?.num.toString().split('#').join('') || ''
+    );
+    const getUser = SessionMagagement.getSession();
+    if (!!getComicNum && comic?.title) {
+      const comicData = {
+        num: getComicNum,
+        title: comic.title,
+        img: comic.img,
+        alt: comic.description,
+        rating,
+      };
+      ComicApi.setRatingComic(getUser, comicData);
+    }
   },
 };
