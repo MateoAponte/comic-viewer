@@ -12,12 +12,16 @@ exports.handler = async (event) => {
   });
 
   try {
-    return await router.exec(event);
+    const res = await router.exec(event);
+    console.log('RESPONSE: ' + JSON.stringify(res));
+    return res;
   } catch (err) {
     console.error('Handler error:', err);
     return {
       statusCode: HttpCode.BAD,
-      message: '',
+      body: {
+        message: "Couldn't be executed the Router",
+      },
     };
   }
 };
