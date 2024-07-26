@@ -1,6 +1,7 @@
 import { RatingService } from './Services/RatingService';
 import { MiddlewareRouter } from './Router';
 import { HttpRoutes } from './types/Http/HttpRoutes';
+import { HttpCode } from './types/Http/HttpCode';
 
 exports.handler = async (event) => {
   const router = new MiddlewareRouter({
@@ -10,5 +11,13 @@ exports.handler = async (event) => {
     },
   });
 
-  return await router.exec(event);
+  try {
+    return await router.exec(event);
+  } catch (err) {
+    console.error('Handler error:', err);
+    return {
+      statusCode: HttpCode.BAD,
+      message: '',
+    };
+  }
 };
