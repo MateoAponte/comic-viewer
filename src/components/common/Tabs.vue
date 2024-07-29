@@ -43,7 +43,10 @@ onMounted(() => {
         v-for="(tab, index) in tabs"
         v-show="selected === index"
       >
-        <component :is="tab.component"></component>
+        <component
+          :is="tab.component"
+          @update:selection="(evt: any) => updateSelection(evt)"
+        ></component>
       </div>
     </div>
   </div>

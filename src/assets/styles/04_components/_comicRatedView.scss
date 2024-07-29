@@ -1,3 +1,92 @@
 .comic-rating {
   width: 70vw;
+  height: 60vh;
+  max-height: 60vh;
+  overflow-y: auto;
+
+  &__gallery {
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0;
+    padding-bottom: 1rem;
+    &:not(:last-child) {
+      border-bottom: 2px dashed
+        map-get($font-colors, $color-complementary-light-primary);
+    }
+  }
+
+  &__image {
+    width: 150px;
+    min-width: 150px;
+    height: 150px;
+    min-height: 150px;
+    border-radius: 8px;
+    border: 2px solid map-get($font-colors, $color-complementary-light-primary);
+    padding: 1px;
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 8px;
+    }
+  }
+  &__info {
+    justify-self: flex-start;
+    align-self: flex-start;
+    width: 100%;
+    margin-left: 1.5rem;
+    font-weight: 500;
+  }
+  &__rating {
+    height: 100%;
+    align-self: center;
+    position: relative;
+  }
+  &__num {
+    padding: 0.1rem 0.8rem;
+    background-color: map-get($font-colors, $color-base-dark-primary);
+    color: map-get($font-colors, $color-background);
+    border-radius: 4px;
+    display: inline-block;
+    transform: skewX(-20deg);
+    margin-bottom: 0.5rem;
+    border: 2px solid map-get($font-colors, $color-complementary-light-primary);
+    margin-right: 1.5rem;
+  }
+  &__title {
+    color: map-get($font-colors, $color-complementary-light-primary);
+    font-size: 1.3rem;
+  }
+  &__description {
+    font-size: 0.95rem;
+    max-height: 2rem;
+  }
+  &__buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    min-width: 20%;
+    button {
+      font-size: 1.2rem;
+      padding: 0.5rem 0.7rem;
+      text-align: center;
+      display: block;
+      border: none;
+      margin-left: 20px;
+      color: map-get($font-colors, $color-background);
+      border-radius: 4px;
+      cursor: pointer;
+      svg {
+        position: relative;
+        top: 0.15rem;
+      }
+
+      &.button-view {
+        background-color: map-get($font-colors, $color-base-dark-primary);
+      }
+      &.button-delete {
+        background-color: map-get($font-colors, $color-complementary-primary);
+      }
+    }
+  }
 }

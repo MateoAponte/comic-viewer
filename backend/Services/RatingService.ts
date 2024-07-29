@@ -37,6 +37,8 @@ export class RatingService implements Service {
   }
 
   public async getItemById(id: number, comicId: number) {
+    console.log('ID: ' + Number, ' - COMIC ID: ' + comicId);
+
     try {
       const item = await dynamoDb
         .get({

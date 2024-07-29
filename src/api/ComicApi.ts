@@ -5,7 +5,6 @@ import {
   ComicRateResponse,
 } from '../interfaces/ComicResponse';
 import { CODES_RESPONSE } from '../contants/code';
-import { stringify } from 'querystring';
 
 class ComicApi {
   private comicEndpointQueryUrl: string;
@@ -17,6 +16,18 @@ class ComicApi {
     this.comicEndpointCurrentUrl =
       import.meta.env.VITE_APP_COMIC_API_CURRENT_URL;
     this.comicEndpointRatedUrl = import.meta.env.VITE_APP_COMIC_API_RATED_URL;
+  }
+
+  public async fetchAllComics(): Promise<ComicFetchResponse> {
+    try {
+      const response: AxiosResponse<ComicFetchResponse> = await axios.get(
+        `${this.comicEndpointRatedUrl}`
+      );
+
+      return response.data || [];
+    } catch (err) {
+      return { code: CODES_RESPONSE.CODE_ERROR, error: true };
+    }
   }
 
   public async fetchCurrentComic(): Promise<ComicFetchResponse> {

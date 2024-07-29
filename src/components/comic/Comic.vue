@@ -9,7 +9,11 @@
         <ComicSettings />
       </template> -->
       <template #rating>
-        <Rating @update:rating="updateRating" />
+        <Rating
+          @update:rating="updateRating"
+          hasPositionAbs
+          :rate="getComicRate"
+        />
       </template>
       <template #loader>
         <Loader :trigger="comicLoader" />
@@ -28,7 +32,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted } from 'vue';
+import { computed } from 'vue';
 import { useComicStore } from '../../store';
 import { storeToRefs } from 'pinia';
 import Preview from './components/Preview.vue';
@@ -46,17 +50,19 @@ const checkProperties = computed(() => {
   return comicData.value !== null;
 });
 
+const getComicRate = computed(() => {
+  return comicData.value.rating;
+});
+
 const updateRating = (evt: number) => {
-  comicStore.updateComicRating(comicData.value, evt);
+  console.log('------------ COMIC PREVIEW ------------');
+
+  comicStore.updateComicRating(comicData.value, evt + 1);
 };
 
 const handlerRandomComic = () => {
   comicStore.updateComicNumber();
   comicStore.fetchAndUpdateComicData(comicNumber.value);
-};
-
-const getCurrentComic = () => {
-  comicStore.fetchAndUpdateComicData();
 };
 
 const handlerNextComic = () => {
@@ -69,8 +75,4 @@ const handlerPreviousComic = () => {
   comicStore.updateComicNumber(comicControllers.value.first);
   comicStore.fetchAndUpdateComicData(comicControllers.value.first);
 };
-
-onMounted(() => {
-  getCurrentComic();
-});
 </script>

@@ -7,6 +7,9 @@ import { TabInfo } from './interfaces/components/tabs/tabs';
 import { onMounted, ref } from 'vue';
 import Rating from './components/rating/Rating.vue';
 import SessionManagement from './helpers/SessionMagagement';
+import { useComicStore } from './store';
+
+const comicStore = useComicStore();
 
 const tabInfo: TabInfo[] = [
   {
@@ -22,8 +25,18 @@ const tabInfo: TabInfo[] = [
 const selected = ref<number>(0);
 const changeSelection = (evt: number) => (selected.value = evt);
 
+const getAllComic = () => {
+  return comicStore.fetchAllComics();
+};
+
+const getComicData = () => {
+  return comicStore.fetchAndUpdateComicData();
+};
+
 onMounted(() => {
   SessionManagement.init();
+  getAllComic();
+  getComicData();
 });
 </script>
 

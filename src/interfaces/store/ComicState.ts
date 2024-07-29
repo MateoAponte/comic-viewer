@@ -1,5 +1,4 @@
 import { ComicControllers, ComicDataStore } from '../../types/ComicDataStore';
-import { ComicResponse } from '../ComicResponse';
 import { ComicData } from './ComicData';
 import { ref } from 'vue';
 
@@ -9,4 +8,5 @@ export interface ComicState {
   comicNumber: ref<number>;
   comicLoader: ref<boolean>;
   comicControllers: ref<ComicControllers>;
+  ratedComics: ref<Array<ComicData>>;
 }
