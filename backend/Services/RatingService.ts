@@ -29,15 +29,15 @@ export class RatingService implements Service {
     } catch (error) {
       return {
         statusCode: HttpCode.BAD,
-        body: {
-          message: JSON.stringify({ message: error.message }),
-        },
+        body: JSON.stringify({
+          message: error.message,
+        }),
       };
     }
   }
 
   public async getItemById(id: number, comicId: number) {
-    console.log('ID: ' + Number, ' - COMIC ID: ' + comicId);
+    console.log('ID: ' + id, ' - COMIC ID: ' + comicId);
 
     try {
       const item = await dynamoDb
@@ -56,26 +56,51 @@ export class RatingService implements Service {
     } catch (error) {
       return {
         statusCode: HttpCode.BAD,
-        body: {
-          message: JSON.stringify({ message: error.message }),
-        },
+        body: JSON.stringify({
+          message: error.message,
+        }),
       };
     }
   }
 
-  public async deleteRatedById() {
-    return {
-      statusCode: HttpCode.GOOD,
-      body: {
-        message: 'Delete by Id',
-      },
-    };
+  public async deleteRatedById(event) {
+    const query =
+      event.multiValueQueryStringParameters.comicId &&
+      event.queryStringParameters;
+    console.log('QUERY: ' + JSON.stringify(query));
+
+    try {
+      await dynamoDb
+        .delete({
+          TableName: this.tableName,
+          Key: {
+            user_id: query.userId.toString(),
+            index: query.comicId.toString(),
+          },
+        })
+        .promise();
+
+      return {
+        statusCode: HttpCode.GOOD,
+        body: JSON.stringify({
+          message: 'Deleted by Id',
+          data: query.comicId,
+        }),
+      };
+    } catch (error) {
+      return {
+        statusCode: HttpCode.BAD,
+        body: JSON.stringify({
+          message: error.message,
+        }),
+      };
+    }
   }
 
   public async updateRating(body): Promise<Response> {
     const existingItem = await this.getItemById(
       body.user.toString(),
-      JSON.parse(body.rating).num
+      JSON.parse(body.rating).num.toString()
     );
     console.log(
       'UPDATE ITEM: ' + JSON.stringify(existingItem),
@@ -103,25 +128,25 @@ export class RatingService implements Service {
 
         return {
           statusCode: HttpCode.GOOD,
-          body: {
+          body: JSON.stringify({
             message: 'Rating updated successfully',
             data: data,
-          },
+          }),
         };
       } catch (error) {
         return {
           statusCode: HttpCode.BAD,
-          body: {
-            message: JSON.stringify({ message: error.message }),
-          },
+          body: JSON.stringify({
+            message: error.message,
+          }),
         };
       }
     } else {
       return {
         statusCode: HttpCode.BAD,
-        body: {
-          message: JSON.stringify({ message: "The element doesnt exist's" }),
-        },
+        body: JSON.stringify({
+          message: "The element doesnt exist's",
+        }),
       };
     }
   }
@@ -138,27 +163,35 @@ export class RatingService implements Service {
 
     const existingItem = await this.getItemById(
       body.user.toString(),
-      JSON.parse(body.rating).num
+      JSON.parse(body.rating).num.toString()
     );
+    console.log(
+      'SET: ' + JSON.stringify(body.rating),
+      'HAS ITEM: ' + JSON.stringify(existingItem)
+    );
+
     if (existingItem !== undefined) {
-      console.log(
-        'SET: ' + body.rating,
-        'HAS ITEM: ' + JSON.stringify(existingItem)
-      );
       try {
         await dynamoDb.put(params).promise();
+
+        const updatedItem =
+          (await this.getItemById(
+            body.user.toString(),
+            JSON.parse(body.rating).num.toString()
+          )) || {};
+
         return {
           statusCode: HttpCode.GOOD,
-          body: {
-            message: JSON.stringify({ message: 'Rating set successfully' }),
-          },
+          body: JSON.stringify({
+            ...JSON.parse(updatedItem?.rating),
+          }),
         };
       } catch (error) {
         return {
           statusCode: HttpCode.BAD,
-          body: {
-            message: JSON.stringify({ message: error.message }),
-          },
+          body: JSON.stringify({
+            message: error.message,
+          }),
         };
       }
     } else {
@@ -169,39 +202,42 @@ export class RatingService implements Service {
   public async init(event) {
     if (event.path === HttpRoutes.Rating) {
       try {
+        console.log('HTTP METHOD: ' + event.httpMethod);
+
         switch (event.httpMethod) {
           case HttpMethods.GET:
             return await this.getAll();
           case HttpMethods.POST:
             return await this.setRating(JSON.parse(event.body).data);
           case HttpMethods.DELETE:
-            return await this.deleteRatedById();
+            const deleteV = await this.deleteRatedById(event);
+            return deleteV;
           case HttpMethods.PATCH:
             return await this.updateRating(JSON.parse(event.body).data);
           default:
             return {
               statusCode: HttpCode.NO_CONTENT,
-              body: {
-                message: JSON.stringify({ message: 'Http Methods not valid' }),
-              },
+              body: JSON.stringify({
+                message: 'Http Methods not valid',
+              }),
             };
         }
       } catch (err) {
         console.error('RatingService error:', err);
         return {
           statusCode: HttpCode.BAD,
-          body: {
+          body: JSON.stringify({
             message: 'Error handling request',
             error: err.message || 'Unknown error',
-          },
+          }),
         };
       }
     } else {
       return {
         statusCode: HttpCode.BAD,
-        body: {
+        body: JSON.stringify({
           message: "Path doesn't is related to the Rating Service",
-        },
+        }),
       };
     }
   }

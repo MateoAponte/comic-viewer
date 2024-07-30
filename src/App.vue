@@ -24,8 +24,6 @@ const tabInfo: TabInfo[] = [
 
 const selected = ref<number>(0);
 const changeSelection = (evt: number) => {
-  console.log(evt);
-
   selected.value = evt;
 };
 

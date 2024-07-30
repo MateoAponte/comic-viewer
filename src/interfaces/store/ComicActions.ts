@@ -14,4 +14,5 @@ export interface ComicActions {
   updateComicRating: (comicData: ComicDataStore, rating: number) => void;
   updateCurrentComicRating: (comic: ComicResponse) => void;
   updateAllRatedComics: (value: Array<ComicData>) => void;
+  deleteComicById: (comic: ComicData) => void;
 }
