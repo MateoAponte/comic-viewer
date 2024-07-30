@@ -26,7 +26,6 @@ const { comicNumber } = storeToRefs(comicStore);
 watch(
   () => props.rate,
   (newVal, oldVal) => {
-    console.log('Watch: ' + newVal);
     if (oldVal !== newVal) {
       activeStar.value = newVal;
     }

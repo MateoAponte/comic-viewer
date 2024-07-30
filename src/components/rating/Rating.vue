@@ -22,7 +22,7 @@ const getComic = (comic: ComicData) => {
 };
 
 const deleteComic = (comic: ComicData) => {
-  comicStore.fetchAndUpdateComicData(comic.num);
+  comicStore.deleteComicById(comic);
 };
 </script>
 

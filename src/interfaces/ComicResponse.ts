@@ -10,6 +10,7 @@ export interface ComicResponse {
   img: string;
   title: string;
   day: string;
+  date?: string;
 }
 
 export interface ComicError {

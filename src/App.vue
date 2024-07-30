@@ -8,6 +8,8 @@ import { onMounted, ref } from 'vue';
 import Rating from './components/rating/Rating.vue';
 import SessionManagement from './helpers/SessionMagagement';
 import { useComicStore } from './store';
+import { BxBookReader } from '@kalimahapps/vue-icons';
+import { CaStarReview } from '@kalimahapps/vue-icons';
 
 const comicStore = useComicStore();
 
@@ -15,17 +17,17 @@ const tabInfo: TabInfo[] = [
   {
     name: 'Comic',
     component: Comic,
+    icon: BxBookReader,
   },
   {
     name: 'Puntuados',
     component: Rating,
+    icon: CaStarReview,
   },
 ];
 
 const selected = ref<number>(0);
 const changeSelection = (evt: number) => {
-  console.log(evt);
-
   selected.value = evt;
 };
 

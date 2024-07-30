@@ -26,6 +26,12 @@
       cursor: pointer;
       border: 2px solid
         map-get($font-colors, $color-complementary-light-primary);
+      svg {
+        font-size: 1.3rem;
+        margin-right: 0.3rem;
+        position: relative;
+        top: 0.1rem;
+      }
       &--selected {
         background: map-get(
           $font-colors,

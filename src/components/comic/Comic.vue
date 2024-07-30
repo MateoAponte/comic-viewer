@@ -55,7 +55,7 @@ const getComicRate = computed(() => {
 });
 
 const updateRating = (evt: number) => {
-  comicStore.updateComicRating(comicData.value, evt + 1);
+  comicStore.updateComicRating(comicData.value, evt);
 };
 
 const handlerRandomComic = () => {

@@ -9,6 +9,7 @@ import {
 import { ComicActions } from '../interfaces/store/ComicActions';
 import { state } from './state';
 import { DateTime } from 'luxon';
+import { ComicData } from '../interfaces/store/ComicData';
 
 export const actions: ComicActions = {
   async updateComicDataByFetch(value, query) {
@@ -17,7 +18,7 @@ export const actions: ComicActions = {
       throw new Error('Invalid response format');
     }
 
-    const { month, day, year, num, alt, img, title, link } = value;
+    const { date, month, day, year, num, alt, img, title, link } = value;
     const getPrevious = num - 1;
 
     this.updateComicControllers({
@@ -30,20 +31,25 @@ export const actions: ComicActions = {
       this.updateComicLoader(false);
     });
 
+    let newDate = '';
     // Use luxon to parse the date to a easy to read format
-    const date =
-      !!month && !!day && !!year
-        ? DateTime.fromObject({
-            year: parseInt(year),
-            month: parseInt(month),
-            day: parseInt(day),
-          }).toFormat('MMMM dd, yyyy')
-        : '';
+    if ('month' in value && 'day' in value && 'year' in value) {
+      newDate =
+        !!month && !!day && !!year
+          ? DateTime.fromObject({
+              year: parseInt(year),
+              month: parseInt(month),
+              day: parseInt(day),
+            }).toFormat('MMMM dd, yyyy')
+          : '';
+    } else {
+      newDate = date || '-';
+    }
     const number = !!num ? `# ${num}` : '';
     state.comicData.value = {
       title,
       img,
-      date,
+      date: newDate,
       description: alt,
       num: number,
       link,
@@ -97,7 +103,7 @@ export const actions: ComicActions = {
       );
       state.comicData.value = {
         ...state.comicData.value,
-        rating: ratedComic.rating || 0,
+        rating: ratedComic?.rating || 0,
       };
     }
   },
@@ -124,21 +130,38 @@ export const actions: ComicActions = {
       comic?.num.toString().split('#').join('') || ''
     );
     const getUser = SessionMagagement.getSession();
-    console.log('UPDATE RATING: ' + JSON.stringify(comic) + ', ' + getUser);
     if (!!getComicNum && comic?.title) {
       const comicData = {
         num: getComicNum,
         title: comic.title,
         img: comic.img,
+        date: comic.date,
         alt: comic.description,
         rating,
       };
 
-      return await ComicApi.setRatingComic(getUser, comicData).then(
-        async () => {
-          await actions.fetchAllComics();
-        }
-      );
+      await ComicApi.setRatingComic(getUser, comicData).then(async (res) => {
+        await actions.fetchAllComics();
+        await actions.updateComicDataByFetch(res, state.comicNumber.value);
+        this.updateCurrentComicRating(res as ComicResponse);
+      });
     }
+  },
+  async deleteComicById(comic: ComicData) {
+    const getComicNum = parseInt(
+      comic?.num.toString().split('#').join('') || ''
+    );
+    const getUser = SessionMagagement.getSession();
+    return await ComicApi.deleteComicById(getUser, getComicNum).then(
+      async () => {
+        const deletedData = { ...state.comicData.value, rating: null };
+        await actions.fetchAllComics();
+        await actions.updateComicDataByFetch(
+          deletedData,
+          state.comicNumber.value
+        );
+        this.updateCurrentComicRating(deletedData as ComicResponse);
+      }
+    );
   },
 };

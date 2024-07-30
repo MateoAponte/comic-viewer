@@ -56,13 +56,33 @@ class ComicApi {
   public async setRatingComic(
     user: number,
     ratedComic: ComicRated
-  ): Promise<ComicRateResponse> {
+  ): Promise<ComicFetchResponse> {
     try {
       if (typeof user !== 'number') throw 'No same type';
-      const response: AxiosResponse<ComicRateResponse> = await axios.post(
+      const response: AxiosResponse<ComicFetchResponse> = await axios.post(
         `${this.comicEndpointRatedUrl}`,
         {
           data: { rating: JSON.stringify(ratedComic), user },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      return { code: CODES_RESPONSE.CODE_ERROR, error: true };
+    }
+  }
+
+  public async deleteComicById(
+    user: number,
+    comicNum: number
+  ): Promise<ComicFetchResponse> {
+    try {
+      const response: AxiosResponse<ComicRateResponse> = await axios.delete(
+        `${this.comicEndpointRatedUrl}`,
+        {
+          params: {
+            userId: user,
+            comicId: comicNum,
+          },
         }
       );
       return response.data;
