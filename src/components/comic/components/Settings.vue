@@ -1,3 +1,6 @@
+/*
+  TODO: Set controls logics to add the in the preferences or report a comic
+*/
 <template>
   <div class="comic-settings">
     <span class="comic-settings__icon">

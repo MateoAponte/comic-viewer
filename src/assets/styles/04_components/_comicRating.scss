@@ -1,21 +1,102 @@
+.sorted-controllers {
+  display: flex;
+  align-items: center;
+  background: map-get($font-colors, $color-base-dark-primary);
+  color: map-get($font-colors, $color-background);
+  width: 100%;
+  padding: 1rem 2rem 0.5rem;
+  &__label {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    margin-right: 0.4rem;
+  }
+  &__icons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 8vw;
+  }
+  &__element {
+    padding: 0.5rem 0.7rem 0rem;
+    color: map-get($font-colors, $color-base-dark-primary);
+    background-color: map-get($font-colors, $color-background);
+    border-radius: 8px;
+    margin: 0px 0.5rem;
+    font-size: 1.5rem;
+    margin-bottom: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
+    &:hover {
+      transform: scale(0.95);
+    }
+  }
+}
+
 .row {
   height: 3rem;
-  bottom: -75px;
-  right: 0px;
-  border-radius: 50px;
-  padding: 0.3rem 0.6rem;
-  background-color: rgba(map-get($font-colors, $color-background), 0.8);
+
+  padding: 0.3rem 0.8rem;
+  border-radius: 10px;
   border: 2px solid map-get($font-colors, $color-complementary-light-primary);
+  // background-color: rgba(
+  //   map-get($font-colors, $color-complementary-light-primary),
+  //   0.8
+  // );
+  background-color: map-get($font-colors, $color-complementary-background);
+
   position: absolute;
+  left: 57px;
+  top: 20px;
+
+  &--positioned {
+    bottom: -70px;
+    right: 0px;
+    position: absolute;
+    top: unset;
+    left: unset;
+  }
+
+  &__text {
+    position: absolute;
+    left: -65px;
+    top: 2px;
+    bottom: 0;
+    margin: auto;
+    padding: 2rem 1.1rem;
+    background-color: map-get($font-colors, $color-rating-base);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    border: 2px solid map-get($font-colors, $color-complementary-light-primary);
+
+    &-label {
+      font-size: 1.8rem;
+      font-weight: 600;
+      font-family: map-get($font-family, $font-family-title);
+      position: relative;
+      top: 2px;
+    }
+    &-sublabel {
+      font-size: 0.8rem;
+      font-weight: 600;
+      font-family: map-get($font-family, $font-family-primary);
+      position: relative;
+      bottom: 2px;
+    }
+  }
 }
 
 .fa-star-o,
 .fa-star {
-  margin: 0px 0.1rem;
+  margin: 0px 0.2rem;
   font-size: 2.7rem;
   cursor: pointer;
   position: relative;
-  bottom: 3px;
+  bottom: 10px;
 }
 .fa-star {
   color: map-get($font-colors, $color-rating-base);

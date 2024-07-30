@@ -6,4 +6,6 @@ export const state: ComicState = {
   comicPreferences: ref([]),
   comicNumber: ref(0),
   comicLoader: ref(false),
+  ratedComics: ref([]),
+  comicControllers: ref({ first: 0, last: 0, current: 0 }),
 };

@@ -5,4 +5,5 @@ export interface ComicData {
   img: string;
   title: string;
   date: string;
+  rating: number;
 }

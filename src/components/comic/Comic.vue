@@ -1,11 +1,19 @@
 <template>
   <section class="comic__container">
-    <Preview :comicData="comicData" :skeleton="checkProperties">
+    <Preview
+      :comicData="comicData"
+      :skeleton="checkProperties"
+      :controlData="comicControllers"
+    >
       <!-- <template #settings>
         <ComicSettings />
       </template> -->
       <template #rating>
-        <Rating />
+        <Rating
+          @update:rating="updateRating"
+          previewRate
+          :rate="getComicRate"
+        />
       </template>
       <template #loader>
         <Loader :trigger="comicLoader" />
@@ -14,12 +22,17 @@
         <Skeleton />
       </template>
     </Preview>
-    <Controller :nextComic="handlerNextComic" :previousComic="handlerPreviousComic" :randomComic="handlerRandomComic" />
+    <Controller
+      :nextComic="handlerNextComic"
+      :previousComic="handlerPreviousComic"
+      :randomComic="handlerRandomComic"
+      :controlData="comicControllers"
+    />
   </section>
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted } from 'vue';
+import { computed } from 'vue';
 import { useComicStore } from '../../store';
 import { storeToRefs } from 'pinia';
 import Preview from './components/Preview.vue';
@@ -30,11 +43,20 @@ import Rating from './components/Rating.vue';
 // import ComicSettings from './components/ComicSettings.vue';
 
 const comicStore = useComicStore();
-const { comicData, comicNumber, comicLoader } = storeToRefs(comicStore);
+const { comicData, comicNumber, comicLoader, comicControllers } =
+  storeToRefs(comicStore);
 
 const checkProperties = computed(() => {
   return comicData.value !== null;
 });
+
+const getComicRate = computed(() => {
+  return comicData.value.rating;
+});
+
+const updateRating = (evt: number) => {
+  comicStore.updateComicRating(comicData.value, evt + 1);
+};
 
 const handlerRandomComic = () => {
   comicStore.updateComicNumber();
@@ -48,12 +70,7 @@ const handlerNextComic = () => {
 };
 
 const handlerPreviousComic = () => {
-  const newVal = comicNumber.value - 1;
-  comicStore.updateComicNumber(newVal);
-  comicStore.fetchAndUpdateComicData(newVal);
+  comicStore.updateComicNumber(comicControllers.value.first);
+  comicStore.fetchAndUpdateComicData(comicControllers.value.first);
 };
-
-onMounted(() => {
-  handlerRandomComic();
-});
 </script>

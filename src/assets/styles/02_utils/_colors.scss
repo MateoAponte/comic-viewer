@@ -1,5 +1,7 @@
 $color-background: 'b-light-cream';
 $color-secundary-background: 'b-light-gray';
+$color-complementary-primary: 'c-light-orange';
+$color-complementary-primary-disabled: 'c-light-orange-disabled';
 $color-base-dark-primary: 'p-dark-blue';
 $color-base-dark-secundary: 'p-dark-orange';
 $color-base-dark-terciary: 'p-light-orange';
@@ -15,22 +17,28 @@ $color-rating-hover: 'r-rating-hover';
 $color-rating-checked: 'r-rating-checked';
 
 $font-colors: (
-  $color-background: #f6f6f8,
-  $color-secundary-background: #f0f0f0,
-  $color-base-dark-primary: #627cf1,
-  $color-base-dark-secundary: #627cf1,
+  $color-background: #f6f5f5,
+  $color-secundary-background: #f7f5dd,
+  $color-complementary-primary: #d83656,
+  $color-complementary-primary-disabled: #881a30,
+  $color-base-dark-primary: #3c91b3,
+  $color-base-dark-secundary: #338db0,
   $color-base-dark-terciary: #3b669e,
   $color-base-dark-terciary-gradient: #84aee6,
-  $color-complementary-background: #dcd8df,
-  $color-complementary-light-primary: #454655,
+  $color-complementary-background: #e2e2e2,
+  $color-complementary-light-primary: #3b3e4b,
   $color-complementary-light-primary-gradient: #535466,
   $color-complementary-light-secundary: #535464,
   $color-complementary-light-secundary-gradient: #aeb6c2,
   $color-complementary-light-white: #f0f0f0,
-  $color-rating-base: #f8d538,
-  $color-rating-checked: rgb(248, 197, 55),
+  $color-rating-base: rgb(248, 197, 55),
+  $color-rating-checked: #555b75,
 );
 
 @mixin gradient($color-1, $color-2) {
-  background: linear-gradient(90deg, map-get($font-colors, $color-1) 0%, map-get($font-colors, $color-2) 100%);
+  background: linear-gradient(
+    90deg,
+    map-get($font-colors, $color-1) 0%,
+    map-get($font-colors, $color-2) 100%
+  );
 }
