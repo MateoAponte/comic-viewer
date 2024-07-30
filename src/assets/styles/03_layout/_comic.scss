@@ -89,6 +89,10 @@
     min-height: 65vh;
     background: #fff;
     border: 2px solid map-get($font-colors, $color-complementary-light-primary);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
   }
 
   &-footer {

@@ -33,7 +33,6 @@ export const actions: ComicActions = {
 
     let newDate = '';
     // Use luxon to parse the date to a easy to read format
-    console.log(date);
     if ('month' in value && 'day' in value && 'year' in value) {
       newDate =
         !!month && !!day && !!year
@@ -104,7 +103,7 @@ export const actions: ComicActions = {
       );
       state.comicData.value = {
         ...state.comicData.value,
-        rating: ratedComic.rating || 0,
+        rating: ratedComic?.rating || 0,
       };
     }
   },
