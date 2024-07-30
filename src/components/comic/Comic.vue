@@ -11,7 +11,7 @@
       <template #rating>
         <Rating
           @update:rating="updateRating"
-          hasPositionAbs
+          previewRate
           :rate="getComicRate"
         />
       </template>
@@ -55,8 +55,6 @@ const getComicRate = computed(() => {
 });
 
 const updateRating = (evt: number) => {
-  console.log('------------ COMIC PREVIEW ------------');
-
   comicStore.updateComicRating(comicData.value, evt + 1);
 };
 

@@ -72,7 +72,6 @@ export const actions: ComicActions = {
   async fetchAndUpdateComicData(query) {
     // The method that trigger the loader
     this.updateComicLoader(true);
-    console.log(query);
 
     try {
       let response: ComicFetchResponse;
@@ -102,6 +101,9 @@ export const actions: ComicActions = {
       };
     }
   },
+  updateAllRatedComics(allComics) {
+    state.ratedComics.value = allComics;
+  },
   updateComicControllers(value) {
     const copyComicControllers = { ...state.comicControllers.value };
 
@@ -117,7 +119,7 @@ export const actions: ComicActions = {
   updateComicLoader(value) {
     state.comicLoader.value = value;
   },
-  updateComicRating(comic, rating) {
+  async updateComicRating(comic, rating) {
     const getComicNum = parseInt(
       comic?.num.toString().split('#').join('') || ''
     );
@@ -132,9 +134,11 @@ export const actions: ComicActions = {
         rating,
       };
 
-      ComicApi.setRatingComic(getUser, comicData).then(() => {
-        actions.fetchAllComics();
-      });
+      return await ComicApi.setRatingComic(getUser, comicData).then(
+        async () => {
+          await actions.fetchAllComics();
+        }
+      );
     }
   },
 };

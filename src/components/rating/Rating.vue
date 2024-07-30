@@ -5,6 +5,7 @@ import Rating from '../comic/components/Rating.vue';
 import { useComicStore } from '../../store';
 import { storeToRefs } from 'pinia';
 import { ComicData } from '../../interfaces/store/ComicData';
+import Sorted from './Sorted.vue';
 
 const emits = defineEmits(['update:selection']);
 
@@ -12,8 +13,6 @@ const comicStore = useComicStore();
 const { comicData, ratedComics } = storeToRefs(comicStore);
 
 const updateRating = (evt: number) => {
-  console.log('------------ RATED LIST ------------');
-
   comicStore.updateComicRating(comicData.value, evt);
 };
 
@@ -30,6 +29,7 @@ const deleteComic = (comic: ComicData) => {
 <template>
   <section class="comic__container">
     <div class="comic-rating">
+      <Sorted />
       <div
         class="comic-rating__gallery"
         v-for="comic in ratedComics"

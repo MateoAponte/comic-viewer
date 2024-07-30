@@ -1,6 +1,7 @@
 $color-background: 'b-light-cream';
 $color-secundary-background: 'b-light-gray';
 $color-complementary-primary: 'c-light-orange';
+$color-complementary-primary-disabled: 'c-light-orange-disabled';
 $color-base-dark-primary: 'p-dark-blue';
 $color-base-dark-secundary: 'p-dark-orange';
 $color-base-dark-terciary: 'p-light-orange';
@@ -18,7 +19,8 @@ $color-rating-checked: 'r-rating-checked';
 $font-colors: (
   $color-background: #f6f5f5,
   $color-secundary-background: #f7f5dd,
-  $color-complementary-primary: #eb4466,
+  $color-complementary-primary: #d83656,
+  $color-complementary-primary-disabled: #881a30,
   $color-base-dark-primary: #3c91b3,
   $color-base-dark-secundary: #338db0,
   $color-base-dark-terciary: #3b669e,

@@ -8,12 +8,12 @@ import { storeToRefs } from 'pinia';
 const emits = defineEmits(['update:rating']);
 
 const props = defineProps({
-  hasPositionAbs: { type: Boolean, default: false },
+  previewRate: { type: Boolean, default: false },
   rate: { type: Number, default: 0 },
 });
 
 const getPosition = computed(() => {
-  return props.hasPositionAbs ? 'row--positioned' : '';
+  return props.previewRate ? 'row--positioned' : '';
 });
 
 const stars = ref<number[]>([0, 1, 2, 3, 4]);
@@ -26,13 +26,14 @@ const { comicNumber } = storeToRefs(comicStore);
 watch(
   () => props.rate,
   (newVal, oldVal) => {
+    console.log('Watch: ' + newVal);
     if (oldVal !== newVal) {
       activeStar.value = newVal;
     }
   }
 );
 watch(comicNumber, (newVal, oldVal) => {
-  if (oldVal !== newVal) {
+  if (props.previewRate && oldVal !== newVal) {
     hoveredStar.value = null;
     activeStar.value = null;
   }
@@ -41,10 +42,10 @@ watch(comicNumber, (newVal, oldVal) => {
 const starClass = (index: number) => {
   // This one firts check if a star is hovered to modify the styles
   if (hoveredStar.value !== null) {
-    return index <= hoveredStar.value ? 'fa-star' : 'fa-star-o';
+    return stars.value[index] <= hoveredStar.value ? 'fa-star' : 'fa-star-o';
     // If doesnt are hovered but if they are clicked to update the active stars this one gonna modify again the styles
   } else if (activeStar.value !== null) {
-    return index <= activeStar.value ? 'fa-star' : 'fa-star-o';
+    return stars.value[index] <= activeStar.value ? 'fa-star' : 'fa-star-o';
   } else {
     return 'fa-star-o';
   }
@@ -55,8 +56,8 @@ const checkStars = (index: number) => {
   // In other words, if is active, gonna print the fill star
   // If not, print the bordered star
   return (
-    (activeStar.value !== null && activeStar.value >= index) ||
-    (hoveredStar.value !== null && hoveredStar.value >= index)
+    (activeStar.value !== null && activeStar.value >= stars.value[index]) ||
+    (hoveredStar.value !== null && hoveredStar.value >= stars.value[index])
   );
 };
 

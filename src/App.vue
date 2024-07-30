@@ -23,7 +23,11 @@ const tabInfo: TabInfo[] = [
 ];
 
 const selected = ref<number>(0);
-const changeSelection = (evt: number) => (selected.value = evt);
+const changeSelection = (evt: number) => {
+  console.log(evt);
+
+  selected.value = evt;
+};
 
 const getAllComic = () => {
   return comicStore.fetchAllComics();
@@ -33,10 +37,10 @@ const getComicData = () => {
   return comicStore.fetchAndUpdateComicData();
 };
 
-onMounted(() => {
+onMounted(async () => {
   SessionManagement.init();
-  getAllComic();
-  getComicData();
+  await getAllComic();
+  await getComicData();
 });
 </script>
 

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { onMounted, PropType, ref } from 'vue';
+import { computed, onMounted, PropType, ref } from 'vue';
 import { TabInfo } from '../../interfaces/components/tabs/tabs';
 
 const emit = defineEmits(['update:selection']);
@@ -12,10 +12,12 @@ const props = defineProps({
   },
 });
 
+const isActive = computed(() => {
+  return selected.value === props.selection ? selected.value : 0;
+});
+
 const selected = ref<number>(0);
 const updateSelection = (val: number) => {
-  console.log(val);
-
   selected.value = val;
   emit('update:selection', val);
 };
@@ -29,10 +31,13 @@ onMounted(() => {
   <div class="tab">
     <div class="tab__activator">
       <div
-        class="tab__activator-element"
         v-for="(tab, index) in tabs"
         :key="index"
         @click="updateSelection(index)"
+        :class="[
+          isActive === index && 'tab__activator-element--selected',
+          'tab__activator-element',
+        ]"
       >
         {{ tab.name }}
       </div>
