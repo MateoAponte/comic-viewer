@@ -1,7 +1,13 @@
 <script setup lang="ts">
 import { AnFilledGithub } from '@kalimahapps/vue-icons';
 import { AkLinkedinBoxFill } from '@kalimahapps/vue-icons';
+import { MEDIA_LINK } from '../../contants/media';
+
+const openLink = (link: string) => {
+  window.open(link, '_blank');
+};
 </script>
+
 <template>
   <div class="comic-header">
     <div class="comic-header__section">
@@ -14,10 +20,13 @@ import { AkLinkedinBoxFill } from '@kalimahapps/vue-icons';
     </div>
     <div class="comic-header__section">
       <div class="comic-social">
-        <div class="comic-social__divition">
+        <div class="comic-social__divition" @click="openLink(MEDIA_LINK.GIT)">
           <AnFilledGithub />
         </div>
-        <div class="comic-social__divition">
+        <div
+          class="comic-social__divition"
+          @click="openLink(MEDIA_LINK.LINKEDIN)"
+        >
           <AkLinkedinBoxFill />
         </div>
       </div>

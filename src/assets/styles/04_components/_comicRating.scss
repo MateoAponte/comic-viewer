@@ -97,6 +97,7 @@
   cursor: pointer;
   position: relative;
   bottom: 10px;
+  transition: all 0.2s;
 }
 .fa-star {
   color: map-get($font-colors, $color-rating-base);
