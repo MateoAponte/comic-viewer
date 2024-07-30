@@ -39,6 +39,7 @@ onMounted(() => {
           'tab__activator-element',
         ]"
       >
+        <component :is="tab.icon" />
         {{ tab.name }}
       </div>
     </div>
