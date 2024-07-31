@@ -5,9 +5,6 @@
       :skeleton="checkProperties"
       :controlData="comicControllers"
     >
-      <!-- <template #settings>
-        <ComicSettings />
-      </template> -->
       <template #rating>
         <Rating
           @update:rating="updateRating"
