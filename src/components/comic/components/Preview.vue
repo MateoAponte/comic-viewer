@@ -3,7 +3,7 @@
     <div class="comic-preview__header">
       <span class="comic-preview__header-num">{{ comicData.num }}</span>
       <h5 class="comic-preview__header-title">{{ comicData.title }}</h5>
-      <span v-if="isCurrentComic"> Comic del día </span>
+      <!-- <span v-if="isCurrentComic"> Comic del día </span> -->
       <slot name="settings" />
     </div>
     <div class="comic-preview__content">
