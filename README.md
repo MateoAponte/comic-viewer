@@ -76,6 +76,17 @@ Each comic have a simple system to rating, you can rate clicking a star between 
 | ----------------------------------------------------- | ------------------------------------------------- |
 | ![Unrated comic](./src/assets/image/unratedComic.png) | ![Rated comic](./src/assets/image/ratedComic.png) |
 
+- **Rated comics**
+
+Each rated comic is saved in a Database, that refresh instantly a a list of all rated comics. Each one have a button to preview the rated comic and delete the rated comic
+
+![alt text](./src/assets/image/ratedComics.png)
+
+- **Rated Comics Filters**
+
+The Rated comics have some buttons that allows the possibility to filter by **Rating, Date, Num and Alphabetic**.
+![alt text](./src/assets/image/RatedFilters.png)
+
 ## Testing
 
 To check that the project is working properly we can run the testing. In this project have 2 ways to check that.
