@@ -4,7 +4,6 @@ import { BsCalendar2Date } from '@kalimahapps/vue-icons';
 import { CoListNumbered } from '@kalimahapps/vue-icons';
 import { useComicStore } from '../../store';
 import { SortedTypes } from '../../interfaces/components/sorted/sorted';
-import { ComicData } from '../../interfaces/store/ComicData';
 import { CaStringText } from '@kalimahapps/vue-icons';
 import { ComicRated } from '../../interfaces/ComicResponse';
 import { storeToRefs } from 'pinia';
@@ -25,7 +24,8 @@ const sortByRate = () => {
 const sortByDate = () => {
   const copyRated: Array<ComicRated> = [...ratedComics.value];
   return copyRated.sort(
-    (a: ComicRated, b: ComicRated) => new Date(a.date) - new Date(b.date)
+    (a: ComicRated, b: ComicRated) =>
+      new Date(b.date).getTime() - new Date(a.date).getTime()
   );
 };
 const sortByNum = () => {
@@ -34,7 +34,7 @@ const sortByNum = () => {
 };
 
 const sortComics = (sortValue: string) => {
-  let sortedArrays: Array<ComicData>;
+  let sortedArrays: Array<ComicRated>;
   switch (sortValue) {
     case SortedTypes.BY_DATE:
       sortedArrays = sortByDate();

@@ -4,8 +4,8 @@ import { FlFilledDelete } from '@kalimahapps/vue-icons';
 import Rating from '../comic/components/Rating.vue';
 import { useComicStore } from '../../store';
 import { storeToRefs } from 'pinia';
-import { ComicData } from '../../interfaces/store/ComicData';
 import Sorted from './Sorted.vue';
+import { ComicRated } from '../../interfaces/ComicResponse';
 
 const emits = defineEmits(['update:selection']);
 
@@ -16,12 +16,13 @@ const updateRating = (evt: number) => {
   comicStore.updateComicRating(comicData.value, evt);
 };
 
-const getComic = (comic: ComicData) => {
-  comicStore.fetchAndUpdateComicData(comic.num);
+const getComic = (comic: ComicRated) => {
+  const getNumber = comic.num.toString().split('#').join('') || '';
+  comicStore.fetchAndUpdateComicData(parseInt(getNumber));
   emits('update:selection', 0);
 };
 
-const deleteComic = (comic: ComicData) => {
+const deleteComic = (comic: ComicRated) => {
   comicStore.deleteComicById(comic);
 };
 </script>

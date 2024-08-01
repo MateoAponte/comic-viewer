@@ -1,5 +1,5 @@
 export interface ComicData {
-  num: number;
+  num: number | string;
   link: string;
   description: string;
   img: string;

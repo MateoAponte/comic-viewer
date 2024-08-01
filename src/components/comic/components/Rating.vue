@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed, onMounted, PropType, ref, watch } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 import { FlStarEmphasis } from '@kalimahapps/vue-icons';
 import { FlFilledStarEmphasis } from '@kalimahapps/vue-icons';
 import { useComicStore } from '../../../store';

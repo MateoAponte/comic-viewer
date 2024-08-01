@@ -1,7 +1,7 @@
 <template>
   <section class="comic__container">
     <Preview
-      :comicData="comicData"
+      :comicData="getComicData"
       :skeleton="checkProperties"
       :controlData="comicControllers"
     >
@@ -37,6 +37,7 @@ import Controller from './components/Controllers.vue';
 import Skeleton from './components/Skeleton.vue';
 import Loader from './components/Loader.vue';
 import Rating from './components/Rating.vue';
+import { ComicData } from '../../interfaces/store/ComicData';
 // import ComicSettings from './components/ComicSettings.vue';
 
 const comicStore = useComicStore();
@@ -47,8 +48,21 @@ const checkProperties = computed(() => {
   return comicData.value !== null;
 });
 
+const getComicData = computed((): ComicData => {
+  return comicData.value
+    ? comicData.value
+    : {
+        rating: 0,
+        title: '',
+        img: '',
+        date: '',
+        description: '',
+        num: '',
+        link: '',
+      };
+});
 const getComicRate = computed(() => {
-  return comicData.value.rating;
+  return comicData.value ? comicData.value.rating : 0;
 });
 
 const updateRating = (evt: number) => {

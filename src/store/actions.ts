@@ -9,7 +9,6 @@ import {
 import { ComicActions } from '../interfaces/store/ComicActions';
 import { state } from './state';
 import { DateTime } from 'luxon';
-import { ComicData } from '../interfaces/store/ComicData';
 
 export const actions: ComicActions = {
   async updateComicDataByFetch(value, query) {
@@ -56,10 +55,25 @@ export const actions: ComicActions = {
       rating: 0,
     };
   },
+  async updateComicData(value) {
+    const { date, num, description, img, title, link, rating } = value;
+
+    const newDate = date || '-';
+    const number = !!num ? `# ${num}` : '';
+    state.comicData.value = {
+      title,
+      img,
+      date: newDate,
+      description,
+      num: number,
+      link,
+      rating,
+    };
+  },
   async fetchAllComics() {
     return await ComicApi.fetchAllComics()
       .then((res) => {
-        state.ratedComics.value = res;
+        state.ratedComics.value = res as unknown as ComicRated[];
       })
       .catch((err) => {
         return err;
@@ -97,7 +111,7 @@ export const actions: ComicActions = {
     }
   },
   updateCurrentComicRating(comic) {
-    if (!!state.ratedComics.value.length) {
+    if (!!state.ratedComics.value.length && !!state.comicData.value) {
       const ratedComic = state.ratedComics.value.find(
         (item: ComicRated) => item.num === comic.num
       );
@@ -117,10 +131,12 @@ export const actions: ComicActions = {
   },
   updateComicNumber(value) {
     // If the method is called without a param return a random ID, if have a param update with this value
-    const randomNumber = Math.floor(
-      Math.random() * (state.comicControllers.value.last - 1 + 1) + 1
-    );
-    state.comicNumber.value = !value ? randomNumber : value;
+    if (!!state.comicControllers.value.last) {
+      const randomNumber = Math.floor(
+        Math.random() * (state.comicControllers.value.last - 1 + 1) + 1
+      );
+      state.comicNumber.value = !value ? randomNumber : value;
+    }
   },
   updateComicLoader(value) {
     state.comicLoader.value = value;
@@ -147,20 +163,23 @@ export const actions: ComicActions = {
       });
     }
   },
-  async deleteComicById(comic: ComicData) {
+  async deleteComicById(comic) {
     const getComicNum = parseInt(
       comic?.num.toString().split('#').join('') || ''
     );
     const getUser = SessionMagagement.getSession();
     return await ComicApi.deleteComicById(getUser, getComicNum).then(
       async () => {
-        const deletedData = { ...state.comicData.value, rating: null };
         await actions.fetchAllComics();
-        await actions.updateComicDataByFetch(
-          deletedData,
-          state.comicNumber.value
-        );
-        this.updateCurrentComicRating(deletedData as ComicResponse);
+        if (state.comicData.value !== null) {
+          const deletedData = {
+            ...state.comicData.value,
+          };
+          actions.updateComicData(deletedData);
+          this.updateCurrentComicRating(
+            deletedData as unknown as ComicResponse
+          );
+        }
       }
     );
   },

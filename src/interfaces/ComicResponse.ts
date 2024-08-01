@@ -21,6 +21,7 @@ export interface ComicError {
 export type ComicFetchResponse = ComicResponse | ComicError;
 
 export interface ComicRated {
+  date: string | number | Date;
   num: number;
   title: string;
   img: string;

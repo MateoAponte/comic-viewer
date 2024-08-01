@@ -30,17 +30,13 @@
 </template>
 
 <script setup lang="ts">
-import { computed, PropType } from 'vue';
+import { PropType } from 'vue';
 import { ComicData } from '../../../interfaces/store/ComicData';
 import { ComicControllers } from '../../../types/ComicDataStore';
 
-const props = defineProps({
+defineProps({
   comicData: { type: Object as PropType<ComicData>, required: true },
   skeleton: { type: Boolean, required: true },
   controlData: { type: Object as PropType<ComicControllers>, required: true },
 });
-
-const isCurrentComic = computed(
-  () => props.controlData.last === props.controlData.current
-);
 </script>

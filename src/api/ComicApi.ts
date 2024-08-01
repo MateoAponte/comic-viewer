@@ -1,9 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
-import {
-  ComicFetchResponse,
-  ComicRated,
-  ComicRateResponse,
-} from '../interfaces/ComicResponse';
+import { ComicFetchResponse, ComicRated } from '../interfaces/ComicResponse';
 import { CODES_RESPONSE } from '../contants/code';
 
 class ComicApi {
@@ -76,7 +72,7 @@ class ComicApi {
     comicNum: number
   ): Promise<ComicFetchResponse> {
     try {
-      const response: AxiosResponse<ComicRateResponse> = await axios.delete(
+      const response: AxiosResponse<ComicFetchResponse> = await axios.delete(
         `${this.comicEndpointRatedUrl}`,
         {
           params: {
