@@ -4,7 +4,7 @@
 
 ## About the project
 
-This project is created to solve a Tech test about a Simple Comic Generator.
+This project is created to solve a Tech test about a Simple Comic Generator
 
 The URL to access to this project is: [Comic Generator Link](http://comic-generator.com.s3-website-us-east-1.amazonaws.com)
 
